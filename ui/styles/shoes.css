@@ -1,0 +1,49 @@
+#shoeList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#filters {
+  display: flex;
+  padding: 1rem;
+  background-color: #ccc;
+  margin: 1rem 0;
+}
+
+#filters > label {
+  margin: 0 1rem;
+}
+
+.shoeItem {
+  width: 200px;
+  border: 1px solid #ccc;
+  transition: 0.2s linear;
+  margin: 0.5rem;
+  background-color: white;
+  cursor: pointer;
+}
+
+.shoeItem--image {
+  width: 198px;
+  height: 150px;
+  background-color: white;
+  background-position: center;
+  background-size: cover;
+}
+
+.shoeItem--label {
+  font-size: 1.1rem;
+  text-align: center;
+  margin: 1rem auto;
+}
+
+.shoeItem--price {
+  text-align: center;
+  color: #444;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.shoeItem:hover{
+  transform: scale(1.2);
+}

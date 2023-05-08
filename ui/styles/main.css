@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 17px Verdana, Arial, Tahoma, sans-serif;
+  padding: 1rem;
+}
+
+button, input {
+  font-family: Verdana, Arial, Tahoma, sans-serif !important;
+}
+
+#header {
+  display: flex;
+  align-items: baseline;
+}
+
+#header > a {
+  text-decoration: none;
+}
+
+h2{
+  color: #888;
+  margin: 0 1rem;
+  cursor: pointer;
+}
+
+h2:hover{
+  color: #333;
+}
+
+#paging{
+  display: flex;
+  justify-content: end;
+  margin-bottom: 1rem;
+}
+
+#paging > * {
+  margin: 0 1rem;
+}
+
+#paginator {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.paginatorItem {
+  margin: 0.25rem;
+  padding: 0.25rem;
+  cursor: pointer;
+}
+
+.paginatorItem:hover {
+  background-color: #ccc;
+}
