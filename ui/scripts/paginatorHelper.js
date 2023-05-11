@@ -5,7 +5,6 @@ const getPaginator = (itemCount) => {
   const pageSize = Number(document.getElementById("pageSize").value);
   const left = itemCount % pageSize;
   const pageCount = left === 0 ? itemCount / pageSize : Math.floor(itemCount / pageSize) + 1;
-  console.log(pageCount, pageSize)
 
   let paginatorItems = '';
   for(let i = 0; i < pageCount; i++){

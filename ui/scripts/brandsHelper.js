@@ -30,8 +30,7 @@ const getBrandsDropdown = () => {
   for(let i = 0; i < mockBrands.length; i++){
     brandItems += `<option value="${mockBrands[i].id}">${mockBrands[i].name}</option>`;
   }
-  console.log(brandItems)
-  
+    
   document.getElementById("brandsDropdown").innerHTML = brandItems;
 }
 

@@ -29,7 +29,6 @@ const getCategoriesDropdown = () => {
   for(let i = 0; i < mockCategories.length; i++){
     categoryItems += `<option value="${mockCategories[i].id}">${mockCategories[i].name}</option>`;
   }
-  console.log(categoryItems)
   
   document.getElementById("categoriesDropdown").innerHTML = categoryItems;
 }
