@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/shoes.css">
+  <title>The Shoe base</title>
+</head>
+<body>
+  
+  <div id="header">    
+    <a href="index.html"><h1> Available shoes </h1></a>
+    <a href="categories.html"><h2>Categories</h2></a>
+    <a href="brands.html"><h2> Brands </h2></a>
+  </div>
+
+  <div id="viewShoe">
+
+
+  </div>
+
+  
+  <div id="editShoe">
+
+    <h3>Edit shoe</h3>
+    
+    <label> Name
+      <input type="text" id="name" />
+    </label>
+
+    <div id="imagePreview" class="shoeItem--image"></div>
+
+    <label> Image URL
+      <input type="text" id="imageURL" />
+    </label>
+
+    <label> Price
+      <input type="number" id="price" step="0.01" />
+    </label>
+
+    
+    <label> Gender
+      <input type="checkbox" id="genderF" /> Female 
+      <input type="checkbox" id="genderM" /> Male 
+    </label>
+
+    <label> Manufactured sizes
+      <input type="number" id="sizesMin" /> - <input type="number" id="sizesMax" />
+    </label>
+
+    <button id="apply">Save changes</button>
+    <button id="cancel">Cancel</button>
+
+  </div>
+
+
+  <!--Js-->
+  <script type="module" src="./viewEditShoe.js"></script>
+
+</body>
+</html>

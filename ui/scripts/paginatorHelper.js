@@ -1,4 +1,4 @@
-import { getShoeList } from "./shoeHelper.js";
+import { getShoeList } from "./shoesHelper.js";
 
 const getPaginator = () => {
 

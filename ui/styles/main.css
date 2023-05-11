@@ -20,6 +20,10 @@ button, input {
   text-decoration: none;
 }
 
+#header > a:visited{
+  color: black !important;
+}
+
 h2{
   color: #888;
   margin: 0 1rem;
