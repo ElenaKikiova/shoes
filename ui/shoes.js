@@ -5,6 +5,16 @@ import { getShoeList } from "./scripts/shoesHelper.js";
 getShoeList();
 getPaginator();
 
-document.getElementById("applyFilters").addEventListener("click", applyFitlers);
+document.getElementById("applyFilters").addEventListener("click", () => {
+  const nameSearch = document.getElementById("name").value;
+  const priceRange = document.getElementById("priceRange").value;
 
-document.getElementById("pageSize").addEventListener("change", changePaginator)
+  const filters = {
+    name: nameSearch,
+    priceRange: priceRange
+  }
+
+  console.log(filters);
+});
+
+document.getElementById("pageSize").addEventListener("change", () => changePaginator(70))

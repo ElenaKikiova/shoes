@@ -1,10 +1,10 @@
 import { getShoeList } from "./shoesHelper.js";
 
-const getPaginator = () => {
+const getPaginator = (itemCount) => {
 
   const pageSize = Number(document.getElementById("pageSize").value);
-  const left = 70 % pageSize;
-  const pageCount = left === 0 ? 70 / pageSize : Math.floor(70 / pageSize) + 1;
+  const left = itemCount % pageSize;
+  const pageCount = left === 0 ? itemCount / pageSize : Math.floor(itemCount / pageSize) + 1;
   console.log(pageCount, pageSize)
 
   let paginatorItems = '';
