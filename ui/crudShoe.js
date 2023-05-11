@@ -35,19 +35,35 @@ document.getElementById("brandsDropdown").value = shoe.brandId;
 console.log(shoe.brandId, document.getElementById("brandsDropdown").value)
 
 getCategoriesDropdown();
+
 for(let i = 0; i < shoe.categoryIds.length; i++){
   document.querySelector(`#categoriesDropdown>option[value="${shoe.categoryIds[i]}"]`).selected = true;
 }
-
 
 const redirectToShoes = () => {
   window.location.href = 'index.html';
 }
 
-document.getElementById("apply").addEventListener("click", () => {
+document.getElementById("save").addEventListener("click", () => {
+  
+  let gender = [];
+  if(document.getElementById("genderM").checked) gender.push('m');
+  if(document.getElementById("genderF").checked) gender.push('f');
+
+  let categoryIds = [];
+  const options = document.querySelectorAll("#categoriesDropdown>option");
+  for(let i = 0; i < options.length; i++){
+    if(options[i].selected) categoryIds.push(options[i].value);
+  }
+
   const newShoeData = {
     name: document.getElementById("name").value,
-    description: document.getElementById("description").value
+    imageURL: document.getElementById("imageURL").value,
+    sizes: [document.getElementById("sizesMin").value, document.getElementById("sizesMax").value],
+    gender: gender,
+    price: document.getElementById("price").value,
+    brandId: document.getElementById("brandsDropdown").value,
+    categoryIds: categoryIds,
   }
   console.log('saved', newShoeData);
   redirectToShoes();

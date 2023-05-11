@@ -18,7 +18,7 @@ const getShoeList = () => {
 
   for(let i = 0; i < shoes.length; i++) {
     shoes[i].addEventListener("click", () => {
-      window.location.href = "viewShoe.html?id=" + shoes[i].getAttribute('id');
+      window.location.href = "shoe.html?id=" + shoes[i].getAttribute('id');
     })
   }
 }

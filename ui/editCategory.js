@@ -12,7 +12,7 @@ const redirectToCategories = () => {
   window.location.href = 'categories.html';
 }
 
-document.getElementById("apply").addEventListener("click", () => {
+document.getElementById("save").addEventListener("click", () => {
   const newCategoryData = {
     name: document.getElementById("name").value,
     description: document.getElementById("description").value

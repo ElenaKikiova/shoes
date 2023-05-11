@@ -12,7 +12,7 @@ const redirectToBrands = () => {
   window.location.href = 'brands.html';
 }
 
-document.getElementById("apply").addEventListener("click", () => {
+document.getElementById("save").addEventListener("click", () => {
   const newBrandData = {
     name: document.getElementById("name").value,
     description: document.getElementById("description").value
