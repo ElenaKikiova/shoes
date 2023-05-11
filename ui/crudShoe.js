@@ -1,5 +1,6 @@
 import { getBrandsDropdown } from "./scripts/brandsHelper.js";
 import { getCategoriesDropdown } from "./scripts/categoriesHelper.js";
+import { showErrors } from "./scripts/formsHelper.js";
 import { getShoeById, renderShoeDetails } from "./scripts/shoesHelper.js";
 
 const id = new URLSearchParams(window.location.search).get('id');
@@ -77,8 +78,6 @@ const redirectToShoes = () => {
   window.location.href = 'index.html';
 }
 
-
-
 const validate = (data) => {
   const errors = [];
   if(data.name.length < 5) errors.push('name');
@@ -88,14 +87,7 @@ const validate = (data) => {
   if(data.categoryIds.length === 0) errors.push('categories');
   if(data.gender.length === 0) errors.push('gender');
 
-  const errorItems = document.getElementsByClassName("error");
-  for(let i = 0; i < errorItems.length; i++){
-    if(errors.indexOf(errorItems[i].getAttribute('data-error')) > -1) errorItems[i].style.display = 'block';
-    else errorItems[i].style.display = 'none';
-  }
-
-  console.log(errors)
-
+  showErrors(errors);
   return errors.length === 0;
 }
 
@@ -124,8 +116,10 @@ document.getElementById("save").addEventListener("click", () => {
   console.log('saved', newShoeData);
 
   const isValid = validate(newShoeData);
-  console.log(isValid);
-  // redirectToShoes();
+  console.log('is valid:', isValid);
+  if(isValid){
+    // redirectToShoes();
+  }
 });
 
 document.getElementById("cancel").addEventListener("click", () => {

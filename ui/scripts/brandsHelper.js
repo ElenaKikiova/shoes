@@ -19,7 +19,7 @@ const getBrandsList = () => {
 
   for(let i = 0; i < editButtons.length; i++) {
     editButtons[i].addEventListener("click", () => {
-      window.location.href = "editBrand.html?id=" + editButtons[i].getAttribute('id');
+      window.location.href = "brand.html?id=" + editButtons[i].getAttribute('id');
     })
   }
 }

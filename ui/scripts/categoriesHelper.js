@@ -18,7 +18,7 @@ const getCategoriesList = () => {
 
   for(let i = 0; i < editButtons.length; i++) {
     editButtons[i].addEventListener("click", () => {
-      window.location.href = "editCategory.html?id=" + editButtons[i].getAttribute('id');
+      window.location.href = "category.html?id=" + editButtons[i].getAttribute('id');
     })
   }
 }

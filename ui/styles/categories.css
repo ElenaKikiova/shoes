@@ -11,3 +11,7 @@
   max-width: 500px;
   border-bottom: 1px solid #ccc;
 }
+
+#editCategory {
+  width: 500px;
+}

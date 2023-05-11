@@ -22,10 +22,12 @@
     
     <label> Name
       <input type="text" id="name" />
+      <div class="error" data-error="name" >Please enter a valid name</div>
     </label>
 
     <label> Description
       <input type="text" id="description" />
+      <div class="error" data-error="description" >Please enter a valid description</div>
     </label>
 
     <button id="save">Save changes</button>
@@ -35,7 +37,7 @@
 
 
   <!--Js-->
-  <script type="module" src="./editCategory.js"></script>
+  <script type="module" src="./crudCategory.js"></script>
 
 </body>
 </html>

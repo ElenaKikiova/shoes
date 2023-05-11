@@ -1,3 +1,4 @@
-import { getCategoriesList } from "../../ui/scripts/categoriesHelper.js";
+import { getCategoriesList } from "./scripts/categoriesHelper.js";
+
 
 getCategoriesList();

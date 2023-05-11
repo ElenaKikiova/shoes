@@ -30,6 +30,19 @@ h2{
   cursor: pointer;
 }
 
+#filters {
+  display: flex;
+  padding: 1rem;
+  background-color: #ccc;
+  margin: 1rem 0;
+  justify-content: baseline;
+}
+
+#filters > label {
+  margin: 0 1rem;
+}
+
+
 h2:hover{
   color: #333;
 }
@@ -120,6 +133,7 @@ button {
   padding: 0.75rem;
   border-radius: 5px;
   cursor: pointer;
+  margin: 0 0.2rem;
 }
 
 .error {
