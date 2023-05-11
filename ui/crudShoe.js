@@ -1,3 +1,4 @@
+import { post } from "./httpService.js";
 import { getBrandsDropdown } from "./scripts/brandsHelper.js";
 import { getCategoriesDropdown } from "./scripts/categoriesHelper.js";
 import { showErrors } from "./scripts/formsHelper.js";
@@ -114,6 +115,10 @@ document.getElementById("save").addEventListener("click", () => {
   }
 
   console.log('saved', newShoeData);
+
+  post("/shoes", newShoeData).then((data) => {
+    console.log(data)
+  })
 
   const isValid = validate(newShoeData);
   console.log('is valid:', isValid);

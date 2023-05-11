@@ -1,5 +1,10 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(express.json())
 const { run, connect } = require("./mongodbSetup");
 
 const shoeRouter = require("./routes/shoeRoutes");

@@ -11,6 +11,7 @@ exports.getAllShoes = async (req, res) => {
  
 exports.createShoe = async (req, res) => {
   try {
+    console.log(req, req.body)
     const shoe = await shoeService.createShoe(req.body);
     res.json({ data: shoe, status: "success" });
   } catch (err) {
