@@ -8,6 +8,7 @@
   padding: 1rem;
   background-color: #ccc;
   margin: 1rem 0;
+  justify-content: baseline;
 }
 
 #filters > label {
@@ -46,4 +47,45 @@
 
 .shoeItem:hover{
   transform: scale(1.2);
+}
+
+
+
+#editShoe{
+  width: 500px;
+  max-width: 500px;
+}
+
+#shoeDetails {
+  width: 100%;
+  margin: 0.5rem;
+  display: flex;
+}
+
+.shoeDetails--image {
+  width: 300px;
+  height: 300px;
+  background-color: white;
+  background-position: center;
+  background-size: cover;
+}
+
+#shoeDetails--leftpanel {
+  padding: 1rem;
+}
+
+#shoeDetails--label {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+#shoeDetails--gender, #shoeDetails--sizes {
+  margin-bottom: 0.5rem;
+} 
+
+#shoeDetails--price {
+  font-size: 2rem;
+  color: #ff0000;
+  font-weight: bold;
+  margin: 1rem 0;
 }

@@ -34,12 +34,16 @@ const renderShoeItem = (shoe) => {
 
 
 const renderShoeDetails = (shoe) => {
-  return `<div class="shoeDetails" id="${shoe.id}">
+  return `<div id="shoeDetails">
     <div class="shoeDetails--image" style="background-image: url(${shoe.imageURL})"></div>
-    <div class="shoeItem--label">${shoe.name}</div>
-    <div class="shoeDetails--sizes">${shoe.sizes.join(' - ')} EU size</div>
-    <div class="shoeDetails--gender">${shoe.gender.join(', ').replace('m', 'Men').replace('f', 'Women')}</div>
-    <div class="shoeDetails--price">${shoe.price}lv</div>
+    <div id="shoeDetails--leftpanel">
+      <div id="shoeDetails--label">${shoe.name}</div>
+      <div id="shoeDetails--sizes">Comes in sizes: ${shoe.sizes.join(' - ')} (EU)</div>
+      <div id="shoeDetails--gender">Suitable for: ${shoe.gender.join(', ').replace('m', 'Men').replace('f', 'Women')}</div>
+      <div id="shoeDetails--price">${shoe.price}lv</div>
+      
+      <button id="openEdit">Edit</button>
+    </div>
   </div>`
 }
 

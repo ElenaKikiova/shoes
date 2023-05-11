@@ -8,6 +8,11 @@ console.log('fetched shoe', shoe);
 /* View shoe */
 
 document.getElementById("viewShoe").innerHTML = renderShoeDetails(shoe);
+document.getElementById("imagePreview").style.backgroundImage = `url(${shoe.imageURL})`;
+
+document.getElementById("openEdit").addEventListener("click", () => {
+  document.getElementById("editShoe").style.display = 'block';
+});
 
 /* Edit shoe */
 
