@@ -1,0 +1,38 @@
+const mockBrands = [
+  {id: '1', name: 'Puma', description: 'Running shoes'},
+  {id: '2', name: 'Nike', description: 'Sports shoes'},
+  {id: '3', name: 'Tamaris', description: 'For a formal dinners'}
+]
+
+const getBrandsList = () => {
+
+  let brandItems = '';
+
+  for(let i = 0; i < mockBrands.length; i++){
+    brandItems += renderBrandItem(mockBrands[i])
+  }
+  
+  document.getElementById("brandsList").innerHTML = brandItems;
+
+  const editButtons = document.getElementsByClassName("edit");
+
+  for(let i = 0; i < editButtons.length; i++) {
+    editButtons[i].addEventListener("click", () => {
+      window.location.href = "editBrand.html?id=" + editButtons[i].getAttribute('id');
+    })
+  }
+}
+
+
+const renderBrandItem = (brand) => {
+  return `<div class="brandItem" id="${brand.id}">
+  <div>${brand.name}</div>
+  <div><button class="edit" id="${brand.id}">Edit</button><button class="delete">Delete</button></div>
+  </div>`;
+}
+
+const getBrandById = (brandId) => {
+  return mockBrands.filter((c) => c.id === brandId)[0];
+}
+
+export { getBrandsList, renderBrandItem, getBrandById }
