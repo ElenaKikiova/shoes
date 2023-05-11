@@ -26,16 +26,19 @@
     
     <label> Name
       <input type="text" id="name" />
+      <div class="error" data-error="name" >Please enter a valid name</div>
     </label>
 
     <div id="imagePreview" class="shoeDetails--image" ></div>
 
     <label> Image URL
       <input type="text" id="imageURL"/>
+      <div class="error" data-error="imageURL" >Please enter a URL</div>
     </label>
 
     <label> Price
       <input type="number" id="price" step="0.01" />
+      <div class="error" data-error="price" >Please enter a valid price</div>
     </label>
     
     <label> Brand
@@ -46,16 +49,19 @@
     <label> Categories
       <select id="categoriesDropdown" multiple>
       </select>
+      <div class="error" data-error="categories" >Please select at least 1 category</div>
     </label>
 
     
     <label> Gender
       <input type="checkbox" id="genderF" /> Female 
       <input type="checkbox" id="genderM" /> Male 
+      <div class="error" data-error="gender" >Please select at least 1 gender</div>
     </label>
 
     <label> Manufactured sizes
       <input type="number" id="sizesMin" /> - <input type="number" id="sizesMax" />
+      <div class="error" data-error="sizes" >Please enter valid start and end sizes</div>
     </label>
 
     <button id="save">Save changes</button>

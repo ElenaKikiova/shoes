@@ -121,3 +121,8 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.error {
+  display: none;
+  color: red;
+}

@@ -8,7 +8,7 @@ const imageURL = document.getElementById("imageURL");
 const name = document.getElementById("name");
 const imagePreview = document.getElementById("imagePreview");
 const sizesMin = document.getElementById("sizesMin");
-const sizesMax = document.getElementById("sizesMin");
+const sizesMax = document.getElementById("sizesMax");
 const genderF = document.getElementById("genderF");
 const genderM = document.getElementById("genderM");
 const price = document.getElementById("price");
@@ -68,11 +68,35 @@ else {
   imagePreview.style.backgroundImage = `url('${defaultImg}')`
 
   document.querySelector("#editShoe>h3").innerHTML = 'Create shoe';
+  getBrandsDropdown();
+  getCategoriesDropdown();
 
 }
 
 const redirectToShoes = () => {
   window.location.href = 'index.html';
+}
+
+
+
+const validate = (data) => {
+  const errors = [];
+  if(data.name.length < 5) errors.push('name');
+  if(data.imageURL.length < 5) errors.push('imageURL');
+  if(data.price < 1) errors.push('price');
+  if(data.sizes[0] === '' || data.sizes[1] === '' || Number(data.sizes[0]) >= Number(data.sizes[1]) || Number(data.sizes[0]) < 1) errors.push('sizes');
+  if(data.categoryIds.length === 0) errors.push('categories');
+  if(data.gender.length === 0) errors.push('gender');
+
+  const errorItems = document.getElementsByClassName("error");
+  for(let i = 0; i < errorItems.length; i++){
+    if(errors.indexOf(errorItems[i].getAttribute('data-error')) > -1) errorItems[i].style.display = 'block';
+    else errorItems[i].style.display = 'none';
+  }
+
+  console.log(errors)
+
+  return errors.length === 0;
 }
 
 document.getElementById("save").addEventListener("click", () => {
@@ -98,6 +122,9 @@ document.getElementById("save").addEventListener("click", () => {
   }
 
   console.log('saved', newShoeData);
+
+  const isValid = validate(newShoeData);
+  console.log(isValid);
   // redirectToShoes();
 });
 
