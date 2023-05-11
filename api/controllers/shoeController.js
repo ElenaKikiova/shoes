@@ -11,7 +11,6 @@ exports.getAllShoes = async (req, res) => {
  
 exports.createShoe = async (req, res) => {
   try {
-    console.log(req, req.body)
     const shoe = await shoeService.createShoe(req.body);
     res.json({ data: shoe, status: "success" });
   } catch (err) {
@@ -21,7 +20,7 @@ exports.createShoe = async (req, res) => {
  
 exports.getShoeById = async (req, res) => {
   try {
-    const shoe = await shoeService.getShoeById(req.params.id);
+    const shoe = await shoeService.getShoeById(req.params._id);
     res.json({ data: shoe, status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -30,7 +29,7 @@ exports.getShoeById = async (req, res) => {
  
 exports.updateShoe = async (req, res) => {
   try {
-    const shoe = await shoeService.updateShoe(req.params.id, req.body);
+    const shoe = await shoeService.updateShoe(req.params._id, req.body);
     res.json({ data: shoe, status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -39,7 +38,7 @@ exports.updateShoe = async (req, res) => {
  
 exports.deleteShoe = async (req, res) => {
   try {
-    const shoe = await shoeService.deleteShoe(req.params.id);
+    const shoe = await shoeService.deleteShoe(req.params._id);
     res.json({ data: shoe, status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });

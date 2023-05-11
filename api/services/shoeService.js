@@ -5,7 +5,6 @@ exports.getAllShoes = async () => {
 };
  
 exports.createShoe = async (shoe) => {
-  console.log(shoe)
   return await ShoeModel.create(shoe);
 };
 exports.getShoeById = async (id) => {

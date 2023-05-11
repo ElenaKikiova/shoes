@@ -1,8 +1,8 @@
-import { post } from "./httpService.js";
+import { get, post, put } from "./httpService.js";
 import { getBrandsDropdown } from "./scripts/brandsHelper.js";
 import { getCategoriesDropdown } from "./scripts/categoriesHelper.js";
 import { showErrors } from "./scripts/formsHelper.js";
-import { getShoeById, renderShoeDetails } from "./scripts/shoesHelper.js";
+import { renderShoeDetails } from "./scripts/shoesHelper.js";
 
 const id = new URLSearchParams(window.location.search).get('id');
 
@@ -27,7 +27,8 @@ imageURL.addEventListener("input", () => {
 
 if(id){
 
-  const shoe = getShoeById(id);
+  const response = await get('/shoes/' + id);
+  const shoe = (await response.json()).data;
 
   console.log('fetched shoe', shoe);
   
@@ -116,9 +117,16 @@ document.getElementById("save").addEventListener("click", () => {
 
   console.log('saved', newShoeData);
 
-  post("/shoes", newShoeData).then((data) => {
-    console.log(data)
-  })
+  if(id){
+    put("/shoes/" + id, newShoeData).then((data) => {
+      console.log(data)
+    })
+  }
+  else {
+    post("/shoes", newShoeData).then((data) => {
+      console.log(data)
+    })
+  }
 
   const isValid = validate(newShoeData);
   console.log('is valid:', isValid);
