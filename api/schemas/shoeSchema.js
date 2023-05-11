@@ -5,9 +5,9 @@ const Schema = mongoose.Schema;
 const shoeSchema = new Schema({
   name: String,
   price: Number,
-  sizes: [Number],
-  gender: [String],
-  categoryIds: [Number],
+  sizes: [{type: Number}],
+  gender: [{type: String}],
+  categoryIds: [{type: Number}],
   brandId: Number,
   imageURL: String,
   addedAt: {

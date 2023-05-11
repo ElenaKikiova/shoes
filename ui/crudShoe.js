@@ -106,11 +106,11 @@ document.getElementById("save").addEventListener("click", () => {
   const newShoeData = {
     name: name.value,
     imageURL: imageURL.value,
-    sizes: [sizesMin.value, sizesMax.value],
+    sizes: [Number(sizesMin.value), Number(sizesMax.value)],
     gender: genderArr,
-    price: price.value,
-    brandId: brandsDropdown.value,
-    categoryIds: categoryIds,
+    price: Number(price.value),
+    brandId: Number(brandsDropdown.value),
+    categoryIds: categoryIds.map((id) => Number(id)),
   }
 
   console.log('saved', newShoeData);
