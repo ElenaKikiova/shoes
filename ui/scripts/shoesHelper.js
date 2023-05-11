@@ -48,7 +48,8 @@ const renderShoeDetails = (shoe) => {
       <div id="shoeDetails--gender">Suitable for: ${shoe.gender.join(', ').replace('m', 'Men').replace('f', 'Women')}</div>
       <div id="shoeDetails--price">${shoe.price}lv</div>
       
-      <button id="openEdit">Edit</button>
+      <div id="note">Click again to confirm delete</div>
+      <button id="openEdit">Edit</button><button id="deleteShoe">Delete</button>
     </div>
   </div>`
 }

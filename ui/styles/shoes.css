@@ -38,7 +38,11 @@
   transform: scale(1.2);
 }
 
-
+#note {
+  margin: 1rem 0;
+  color: red;
+  display: none;
+}
 
 #editShoe{
   display: none;

@@ -52,4 +52,23 @@ async function put(url = "", data = {}) {
   return response; // parses JSON response into native JavaScript objects
 }
 
-export { get, post, put }
+async function deleteConfirmed(url = "") {
+  // Default options are marked with *
+  const request = {
+    method: "DELETE", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+  const response = await fetch(API_URL + url, request);
+  return response; // parses JSON response into native JavaScript objects
+}
+
+const handleError = (error) => {
+  console.error('ERROR', error)
+}
+
+export { get, post, put, deleteConfirmed, handleError }

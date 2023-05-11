@@ -1,4 +1,4 @@
-import { get, post, put } from "./httpService.js";
+import { deleteConfirmed, get, handleError, post, put } from "./httpService.js";
 import { getBrandsDropdown } from "./scripts/brandsHelper.js";
 import { getCategoriesDropdown } from "./scripts/categoriesHelper.js";
 import { showErrors } from "./scripts/formsHelper.js";
@@ -42,6 +42,19 @@ if(id){
     document.getElementById("editShoe").style.display = 'block';
   });
 
+  document.getElementById("deleteShoe").addEventListener("click", () => {
+    const isConfirmed = document.getElementById("note").style.display === 'block';
+    console.log(isConfirmed);
+    if(!isConfirmed){
+      document.getElementById("note").style.display = 'block';
+    }
+    else {
+      deleteConfirmed("/shoes/" + id).then((response) => {
+        console.log(response);
+        redirectToShoes();
+      })
+    }
+  })
 
   /* Edit shoe */
 
@@ -117,21 +130,21 @@ document.getElementById("save").addEventListener("click", () => {
 
   console.log('saved', newShoeData);
 
-  if(id){
-    put("/shoes/" + id, newShoeData).then((data) => {
-      console.log(data)
-    })
-  }
-  else {
-    post("/shoes", newShoeData).then((data) => {
-      console.log(data)
-    })
-  }
-
   const isValid = validate(newShoeData);
   console.log('is valid:', isValid);
   if(isValid){
-    // redirectToShoes();
+    
+    if(id){
+      put("/shoes/" + id, newShoeData).then((data) => {
+        redirectToShoes();
+      }, handleError)
+    }
+    else {
+      post("/shoes", newShoeData).then((data) => {
+        redirectToShoes();
+      }, handleError)
+    }
+
   }
 });
 
