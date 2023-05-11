@@ -24,13 +24,13 @@ const getBrandsList = () => {
   }
 }
 
-const getBrandsDropdown = () => {
-  let brandItems = '';
+const getBrandsDropdown = (search) => {
+  let brandItems = search ? '<option value="">All</option>' : '';
 
   for(let i = 0; i < mockBrands.length; i++){
     brandItems += `<option value="${mockBrands[i].id}">${mockBrands[i].name}</option>`;
   }
-    
+
   document.getElementById("brandsDropdown").innerHTML = brandItems;
 }
 

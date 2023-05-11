@@ -52,7 +52,7 @@ if(id){
   genderM.checked = shoe.gender.indexOf('m') > -1;
   price.value = shoe.price;
 
-  getBrandsDropdown();
+  getBrandsDropdown(false);
   brandsDropdown.value = shoe.brandId;
 
   getCategoriesDropdown();
@@ -69,7 +69,7 @@ else {
   imagePreview.style.backgroundImage = `url('${defaultImg}')`
 
   document.querySelector("#editShoe>h3").innerHTML = 'Create shoe';
-  getBrandsDropdown();
+  getBrandsDropdown(false);
   getCategoriesDropdown();
 
 }
