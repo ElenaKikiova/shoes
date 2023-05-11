@@ -18,7 +18,7 @@ document.getElementById("save").addEventListener("click", () => {
     description: document.getElementById("description").value
   }
   console.log('saved', newBrandData);
-  redirectToBrands();
+  // redirectToBrands();
 });
 
 document.getElementById("cancel").addEventListener("click", () => {

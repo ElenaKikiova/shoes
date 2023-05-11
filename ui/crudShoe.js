@@ -3,41 +3,72 @@ import { getCategoriesDropdown } from "./scripts/categoriesHelper.js";
 import { getShoeById, renderShoeDetails } from "./scripts/shoesHelper.js";
 
 const id = new URLSearchParams(window.location.search).get('id');
-const shoe = getShoeById(id);
 
-console.log('fetched shoe', shoe);
+const imageURL = document.getElementById("imageURL");
+const name = document.getElementById("name");
+const imagePreview = document.getElementById("imagePreview");
+const sizesMin = document.getElementById("sizesMin");
+const sizesMax = document.getElementById("sizesMin");
+const genderF = document.getElementById("genderF");
+const genderM = document.getElementById("genderM");
+const price = document.getElementById("price");
+const brandsDropdown = document.getElementById("brandsDropdown");
 
-/* View shoe */
+const defaultImg = 'https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg';
 
-document.getElementById("viewShoe").innerHTML = renderShoeDetails(shoe);
-document.getElementById("imagePreview").style.backgroundImage = `url(${shoe.imageURL})`;
 
-document.getElementById("openEdit").addEventListener("click", () => {
+imageURL.addEventListener("input", () => {
+  console.log(imageURL)
+  imagePreview.style.backgroundImage = `url(${imageURL.value})` ?? defaultImg;
+})
+
+
+if(id){
+
+  const shoe = getShoeById(id);
+
+  console.log('fetched shoe', shoe);
+  
+  /* View shoe */
+
+  document.getElementById("viewShoe").innerHTML = renderShoeDetails(shoe);
+  imagePreview.style.backgroundImage = `url(${shoe.imageURL})`;
+
+  document.getElementById("openEdit").addEventListener("click", () => {
+    document.getElementById("viewShoe").style.display = 'none';
+    document.getElementById("editShoe").style.display = 'block';
+  });
+
+
+  /* Edit shoe */
+
+  name.value = shoe.name;
+  imagePreview.style.backgroundImage = `url(${shoe.imageURL})`;
+  imageURL.value = shoe.imageURL;
+  sizesMin.value = shoe.sizes[0];
+  sizesMax.value = shoe.sizes[1];
+  genderF.checked = shoe.gender.indexOf('f') > -1;
+  genderM.checked = shoe.gender.indexOf('m') > -1;
+  price.value = shoe.price;
+
+  getBrandsDropdown();
+  brandsDropdown.value = shoe.brandId;
+
+  getCategoriesDropdown();
+
+  for(let i = 0; i < shoe.categoryIds.length; i++){
+    document.querySelector(`#categoriesDropdown>option[value="${shoe.categoryIds[i]}"]`).selected = true;
+  }
+
+}
+else {
+  document.getElementById("viewShoe").style.display = 'none';
   document.getElementById("editShoe").style.display = 'block';
-});
 
+  imagePreview.style.backgroundImage = `url('${defaultImg}')`
 
-/* Edit shoe */
+  document.querySelector("#editShoe>h3").innerHTML = 'Create shoe';
 
-
-document.getElementById("name").value = shoe.name;
-document.getElementById("imagePreview").style.backgroundImage = `url(${shoe.imageURL})`;
-document.getElementById("imageURL").value = shoe.imageURL;
-document.getElementById("sizesMin").value = shoe.sizes[0];
-document.getElementById("sizesMax").value = shoe.sizes[1];
-document.getElementById("genderF").checked = shoe.gender.indexOf('f') > -1;
-document.getElementById("genderM").checked = shoe.gender.indexOf('m') > -1;
-document.getElementById("price").value = shoe.price;
-
-getBrandsDropdown();
-console.log(shoe.brandId, document.getElementById("brandsDropdown").value)
-document.getElementById("brandsDropdown").value = shoe.brandId;
-console.log(shoe.brandId, document.getElementById("brandsDropdown").value)
-
-getCategoriesDropdown();
-
-for(let i = 0; i < shoe.categoryIds.length; i++){
-  document.querySelector(`#categoriesDropdown>option[value="${shoe.categoryIds[i]}"]`).selected = true;
 }
 
 const redirectToShoes = () => {
@@ -46,9 +77,9 @@ const redirectToShoes = () => {
 
 document.getElementById("save").addEventListener("click", () => {
   
-  let gender = [];
-  if(document.getElementById("genderM").checked) gender.push('m');
-  if(document.getElementById("genderF").checked) gender.push('f');
+  let genderArr = [];
+  if(genderM.checked) genderArr.push('m');
+  if(genderF.checked) genderArr.push('f');
 
   let categoryIds = [];
   const options = document.querySelectorAll("#categoriesDropdown>option");
@@ -57,16 +88,17 @@ document.getElementById("save").addEventListener("click", () => {
   }
 
   const newShoeData = {
-    name: document.getElementById("name").value,
-    imageURL: document.getElementById("imageURL").value,
-    sizes: [document.getElementById("sizesMin").value, document.getElementById("sizesMax").value],
-    gender: gender,
-    price: document.getElementById("price").value,
-    brandId: document.getElementById("brandsDropdown").value,
+    name: name.value,
+    imageURL: imageURL.value,
+    sizes: [sizesMin.value, sizesMax.value],
+    gender: genderArr,
+    price: price.value,
+    brandId: brandsDropdown.value,
     categoryIds: categoryIds,
   }
+
   console.log('saved', newShoeData);
-  redirectToShoes();
+  // redirectToShoes();
 });
 
 document.getElementById("cancel").addEventListener("click", () => {

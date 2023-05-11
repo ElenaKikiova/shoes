@@ -44,6 +44,11 @@ h2:hover{
   margin: 0 1rem;
 }
 
+#paging > a {
+  display: block;
+  margin: 0 auto 0 0 !important;
+}
+
 #paginator {
   display: flex;
   justify-content: center;
