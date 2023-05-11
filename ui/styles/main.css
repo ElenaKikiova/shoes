@@ -67,7 +67,7 @@ label {
   flex-wrap: wrap;
 }
 
-input, select {
+input, select:not([multiple]) {
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -76,6 +76,20 @@ input, select {
   display: block;
   height: 1.7rem;
   outline: none;
+}
+
+select[multiple]{
+  height: auto;
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.1rem;
+  margin: 0.3rem 0;
+}
+
+select[multiple] > option{
+  font-size: 1rem;
+  padding: 0.1rem;
 }
 
 input[type="text"], select {

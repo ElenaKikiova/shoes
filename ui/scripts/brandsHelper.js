@@ -1,7 +1,8 @@
 const mockBrands = [
   {id: '1', name: 'Puma', description: 'Running shoes'},
   {id: '2', name: 'Nike', description: 'Sports shoes'},
-  {id: '3', name: 'Tamaris', description: 'For a formal dinners'}
+  {id: '3', name: 'Tamaris', description: 'For a formal dinners'},
+  {id: '4', name: 'Converse', description: 'Cool kid'}
 ]
 
 const getBrandsList = () => {
@@ -23,6 +24,17 @@ const getBrandsList = () => {
   }
 }
 
+const getBrandsDropdown = () => {
+  let brandItems = '';
+
+  for(let i = 0; i < mockBrands.length; i++){
+    brandItems += `<option value="${mockBrands[i].id}">${mockBrands[i].name}</option>`;
+  }
+  console.log(brandItems)
+  
+  document.getElementById("brandsDropdown").innerHTML = brandItems;
+}
+
 
 const renderBrandItem = (brand) => {
   return `<div class="brandItem" id="${brand.id}">
@@ -35,4 +47,4 @@ const getBrandById = (brandId) => {
   return mockBrands.filter((c) => c.id === brandId)[0];
 }
 
-export { getBrandsList, renderBrandItem, getBrandById }
+export { getBrandsList, renderBrandItem, getBrandById, getBrandsDropdown }

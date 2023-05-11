@@ -23,6 +23,16 @@ const getCategoriesList = () => {
   }
 }
 
+const getCategoriesDropdown = () => {
+  let categoryItems = '';
+
+  for(let i = 0; i < mockCategories.length; i++){
+    categoryItems += `<option value="${mockCategories[i].id}">${mockCategories[i].name}</option>`;
+  }
+  console.log(categoryItems)
+  
+  document.getElementById("categoriesDropdown").innerHTML = categoryItems;
+}
 
 const renderCategoryItem = (category) => {
   return `<div class="categoryItem" id="${category.id}">
@@ -31,8 +41,9 @@ const renderCategoryItem = (category) => {
   </div>`;
 }
 
+
 const getCategoryById = (categoryId) => {
   return mockCategories.filter((c) => c.id === categoryId)[0];
 }
 
-export { getCategoriesList, renderCategoryItem, getCategoryById }
+export { getCategoriesList, renderCategoryItem, getCategoryById, getCategoriesDropdown }
