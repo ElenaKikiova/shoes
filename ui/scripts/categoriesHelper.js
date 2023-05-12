@@ -18,7 +18,7 @@ const getCategoriesList = () => {
 
   for(let i = 0; i < editButtons.length; i++) {
     editButtons[i].addEventListener("click", () => {
-      window.location.href = "category.html?id=" + editButtons[i].getAttribute('id');
+      window.location.href = "category.html?id=" + editButtons[i].getAttribute("data-id");
     })
   }
 }
@@ -34,9 +34,9 @@ const getCategoriesDropdown = () => {
 }
 
 const renderCategoryItem = (category) => {
-  return `<div class="categoryItem" id="${category._id}">
+  return `<div class="categoryItem" data-id="${category._id}">
   <div>${category.name}</div>
-  <div><button class="edit" id="${category._id}">Edit</button><button class="delete">Delete</button></div>
+  <div><button class="edit" data-id="${category._id}">Edit</button><button class="delete">Delete</button></div>
   </div>`;
 }
 

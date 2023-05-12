@@ -30,6 +30,12 @@ h2{
   cursor: pointer;
 }
 
+.note {
+  margin: 1rem 0;
+  color: red;
+  display: none;
+}
+
 #filters {
   display: flex;
   padding: 1rem;

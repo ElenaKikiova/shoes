@@ -1,10 +1,5 @@
 import { get } from "../httpService.js";
 
-const mockShoes = [
-  {_id: '1', name: 'elele', brandId: 1, categoryIds: [1], gender: ['f'], description: 'Comfy and cool', sizes: [36, 41], price: '155', imageURL: 'https://www.converse.com/dw/image/v2/BCZC_PRD/on/demandware.static/-/Sites-cnv-master-catalog/default/dw548572d2/images/a_08/162056C_A_08X1.jpg?sw=406'},
-  {_id: '2', name: 'qwrwe', brandId: 4, categoryIds: [1, 2], gender: ['f', 'm'], description: 'Comfy and cool', sizes: [36, 45], price: '120', imageURL: 'https://www.converse.com/dw/image/v2/BJJF_PRD/on/demandware.static/-/Sites-cnv-master-catalog-we/default/dw4fb98925/images/c_08/M9166_C_08X1.jpg?sw=406'}
-]
-
 const getShoeList = () => {
 
   let shoeItems = '';
@@ -23,7 +18,7 @@ const getShoeList = () => {
   
     for(let i = 0; i < shoeItems.length; i++) {
       shoeItems[i].addEventListener("click", () => {
-        window.location.href = "shoe.html?id=" + shoeItems[i].getAttribute('id');
+        window.location.href = "shoe.html?id=" + shoeItems[i].getAttribute("data-id");
       })
     }
   });
@@ -31,7 +26,7 @@ const getShoeList = () => {
 
 
 const renderShoeItem = (shoe) => {
-  return `<div class="shoeItem" id="${shoe._id}">
+  return `<div class="shoeItem" data-id="${shoe._id}">
     <div class="shoeItem--image" style="background-image: url(${shoe.imageURL})"></div>
     <div class="shoeItem--label">${shoe.name}</div>
     <div class="shoeItem--price">${shoe.price}lv</div>
@@ -48,14 +43,11 @@ const renderShoeDetails = (shoe) => {
       <div id="shoeDetails--gender">Suitable for: ${shoe.gender.join(', ').replace('m', 'Men').replace('f', 'Women')}</div>
       <div id="shoeDetails--price">${shoe.price}lv</div>
       
-      <div id="note">Click again to confirm delete</div>
+      <div class="note">Click again to confirm delete</div>
       <button id="openEdit">Edit</button><button id="deleteShoe">Delete</button>
     </div>
   </div>`
 }
 
-const getShoeById = (shoeId) => {
-  return get('/shoes/' + shoeId);
-}
 
-export { getShoeList, renderShoeItem, getShoeById, renderShoeDetails }
+export { getShoeList, renderShoeItem, renderShoeDetails }

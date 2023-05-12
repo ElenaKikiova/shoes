@@ -26,7 +26,6 @@ imageURL.addEventListener("input", () => {
 
 
 if(id){
-
   const response = await get('/shoes/' + id);
   const shoe = (await response.json()).data;
 
@@ -43,14 +42,12 @@ if(id){
   });
 
   document.getElementById("deleteShoe").addEventListener("click", () => {
-    const isConfirmed = document.getElementById("note").style.display === 'block';
-    console.log(isConfirmed);
+    const isConfirmed = document.getElementsByClassName("note")[0].style.display === 'block';
     if(!isConfirmed){
-      document.getElementById("note").style.display = 'block';
+      document.getElementsByClassName("note")[0].style.display = 'block';
     }
     else {
       deleteConfirmed("/shoes/" + id).then((response) => {
-        console.log(response);
         redirectToShoes();
       })
     }

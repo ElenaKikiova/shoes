@@ -16,7 +16,7 @@ const getPaginator = (itemCount) => {
 }
 
 const renderPaginatorItem = (page) => {
-  return `<div class="paginatorItem" id="${page + 1}">${page + 1}</div>`
+  return `<div class="paginatorItem" data-id="${page + 1}">${page + 1}</div>`
 }
 
 const changePaginator = () => {

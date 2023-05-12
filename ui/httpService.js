@@ -1,6 +1,6 @@
 import { API_URL } from "./constants.js";
 
-async function get(url = "", data = {}) {
+async function get(url = "") {
   // Default options are marked with *
   const request = {
     method: "GET", // *GET, POST, PUT, DELETE, etc.

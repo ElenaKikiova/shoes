@@ -1,10 +1,15 @@
-import { getBrandById } from "./scripts/brandsHelper.js";
+import { get } from "./httpService.js";
 import { showErrors } from "./scripts/formsHelper.js";
 
 const id = new URLSearchParams(window.location.search).get('id');
 
+const redirectToBrands = () => {
+  window.location.href = 'brands.html';
+}
+
 if(id){
-  const brand = getBrandById(id);
+  const response = await get('/brands/' + id);
+  const brand = (await response.json()).data;
 
   console.log('fetched brand', brand);
 
@@ -15,9 +20,6 @@ else {
   document.querySelector("#editBrand>h3").innerHTML = 'Create brand';
 }
 
-const redirectToBrands = () => {
-  window.location.href = 'brands.html';
-}
 
 const validate = (data) => {
   const errors = [];

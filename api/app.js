@@ -7,9 +7,10 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(express.json())
-const { run, connect } = require("./mongodbSetup");
+const { connect } = require("./mongodbSetup");
 
 const shoeRouter = require("./routes/shoeRoutes");
+const brandRouter = require("./routes/brandRoutes");
  
 // middleware
 app.use(express.json());
@@ -24,6 +25,7 @@ connect();
  
 // use routes
 app.use("/api/shoes", shoeRouter);
+app.use("/api/brands", brandRouter);
 
  
 module.exports = app;
