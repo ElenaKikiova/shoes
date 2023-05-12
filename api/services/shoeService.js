@@ -1,14 +1,14 @@
 const ShoeModel = require("../schemas/shoeSchema");
  
 exports.getAllShoes = async () => {
-  return await ShoeModel.find();
+  return await ShoeModel.find().populate('brand');
 };
  
 exports.createShoe = async (shoe) => {
   return await ShoeModel.create(shoe);
 };
 exports.getShoeById = async (id) => {
-  return await ShoeModel.findById(id);
+  return await ShoeModel.findById(id).populate('brand');
 };
  
 exports.updateShoe = async (id, shoe) => {

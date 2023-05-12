@@ -11,6 +11,7 @@ const { connect } = require("./mongodbSetup");
 
 const shoeRouter = require("./routes/shoeRoutes");
 const brandRouter = require("./routes/brandRoutes");
+const categoryRouter = require("./routes/categoryRoutes");
  
 // middleware
 app.use(express.json());
@@ -26,6 +27,7 @@ connect();
 // use routes
 app.use("/api/shoes", shoeRouter);
 app.use("/api/brands", brandRouter);
+app.use("/api/categories", categoryRouter);
 
  
 module.exports = app;

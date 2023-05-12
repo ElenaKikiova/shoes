@@ -1,17 +1,20 @@
-import { getCategoryById } from "./scripts/categoriesHelper.js";
 import { showErrors } from "./scripts/formsHelper.js";
+import { get, handleError, post, put } from "./scripts/httpService.js";
 
 
 const id = new URLSearchParams(window.location.search).get('id');
 
 if(id){
 
-  const category = getCategoryById(id);
+  get(`/categories/${id}`).then(async (response) => {
+    const category = (await response.json()).data;
 
-  console.log('fetched category', category);
+    console.log('fetched category', category);
 
-  document.getElementById("name").value = category.name;
-  document.getElementById("description").value = category.description;
+    document.getElementById("name").value = category.name;
+    document.getElementById("description").value = category.description;
+    document.getElementById("season").value = category.season;
+  });
 }
 else {
   document.querySelector("#editCategory>h3").innerHTML = 'Create category';
@@ -23,8 +26,8 @@ const redirectToCategories = () => {
 
 const validate = (data) => {
   const errors = [];
-  if(data.name.length < 5) errors.push('name');
-  if(data.description.length < 5) errors.push('description');
+  if(data.name.length < 5 || data.name.length > 100) errors.push('name');
+  if(data.description.length < 5 || data.description.length > 100) errors.push('description');
 
   showErrors(errors);
   return errors.length === 0;
@@ -34,7 +37,8 @@ const validate = (data) => {
 document.getElementById("save").addEventListener("click", () => {
   const newCategoryData = {
     name: document.getElementById("name").value,
-    description: document.getElementById("description").value
+    description: document.getElementById("description").value,
+    season: document.getElementById("season").value
   }
 
   console.log('saved', newCategoryData);
@@ -42,7 +46,20 @@ document.getElementById("save").addEventListener("click", () => {
   const isValid = validate(newCategoryData);
   console.log('is valid:', isValid);
   if(isValid){
-    // redirectToCategories();
+    if(isValid){
+    
+      if(id){
+        put("/categories/" + id, newCategoryData).then((data) => {
+          redirectToCategories();
+        }, handleError)
+      }
+      else {
+        post("/categories", newCategoryData).then((data) => {
+          redirectToCategories();
+        }, handleError)
+      }
+  
+    }
   }
 });
 

@@ -85,8 +85,8 @@ else {
 
 const validate = (data) => {
   const errors = [];
-  if(data.name.length < 5) errors.push('name');
-  if(data.imageURL.length < 5) errors.push('imageURL');
+  if(data.name.length < 5 || data.name.length > 100) errors.push('name');
+  if(data.imageURL.length === 0 || data.imageURL.length > 1000) errors.push('imageURL');
   if(data.price < 1) errors.push('price');
   if(data.sizes[0] === '' || data.sizes[1] === '' || Number(data.sizes[0]) >= Number(data.sizes[1]) || Number(data.sizes[0]) < 1) errors.push('sizes');
   if(data.categoryIds.length === 0) errors.push('categories');
@@ -114,14 +114,14 @@ document.getElementById("save").addEventListener("click", () => {
     sizes: [Number(sizesMin.value), Number(sizesMax.value)],
     gender: genderArr,
     price: Number(price.value),
-    brandId: Number(brandsDropdown.value),
+    brand: brandsDropdown.value,
     categoryIds: categoryIds.map((id) => Number(id)),
   }
 
   console.log('saved', newShoeData);
 
   const isValid = validate(newShoeData);
-  console.log('is valid:', isValid);
+  console.log('is valid:', isValid, newShoeData);
   if(isValid){
     
     if(id){
@@ -134,7 +134,6 @@ document.getElementById("save").addEventListener("click", () => {
         redirectToShoes();
       }, handleError)
     }
-
   }
 });
 

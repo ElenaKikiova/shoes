@@ -15,6 +15,7 @@ if(id){
 
   document.getElementById("name").value = brand.name;
   document.getElementById("description").value = brand.description;
+  document.getElementById("establishedAt").value = brand.establishedAt;
 }
 else {
   document.querySelector("#editBrand>h3").innerHTML = 'Create brand';
@@ -23,8 +24,9 @@ else {
 
 const validate = (data) => {
   const errors = [];
-  if(data.name.length === 0) errors.push('name');
-  if(data.description.length < 5) errors.push('description');
+  if(data.name.length < 5 || data.name.length > 100) errors.push('name');
+  if(data.description.length < 5 || data.description.length > 100) errors.push('description');
+  if(data.establishedAt > new Date().getFullYear()) errors.push('establishedAt');
 
   showErrors(errors);
   return errors.length === 0;
@@ -33,7 +35,8 @@ const validate = (data) => {
 document.getElementById("save").addEventListener("click", () => {
   const newBrandData = {
     name: document.getElementById("name").value,
-    description: document.getElementById("description").value
+    description: document.getElementById("description").value,
+    establishedAt: document.getElementById("establishedAt").value,
   }
   console.log('saved', newBrandData);
 
