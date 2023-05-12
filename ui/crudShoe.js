@@ -66,8 +66,9 @@ if(id){
 
   getCategoriesDropdown();
 
-  for(let i = 0; i < shoe.categoryIds.length; i++){
-    document.querySelector(`#categoriesDropdown>option[value="${shoe.categoryIds[i]}"]`).selected = true;
+  for(let i = 0; i < shoe.categories.length; i++){
+    console.log(shoe.categories[i]._id)
+    document.querySelector(`#categoriesDropdown>option[value="${shoe.categories[i]._id}"]`).selected = true;
   }
 
 }
@@ -89,7 +90,7 @@ const validate = (data) => {
   if(data.imageURL.length === 0 || data.imageURL.length > 1000) errors.push('imageURL');
   if(data.price < 1) errors.push('price');
   if(data.sizes[0] === '' || data.sizes[1] === '' || Number(data.sizes[0]) >= Number(data.sizes[1]) || Number(data.sizes[0]) < 1) errors.push('sizes');
-  if(data.categoryIds.length === 0) errors.push('categories');
+  if(data.categories.length === 0) errors.push('categories');
   if(data.gender.length === 0) errors.push('gender');
 
   showErrors(errors);
@@ -115,7 +116,7 @@ document.getElementById("save").addEventListener("click", () => {
     gender: genderArr,
     price: Number(price.value),
     brand: brandsDropdown.value,
-    categoryIds: categoryIds.map((id) => Number(id)),
+    categories: categoryIds
   }
 
   console.log('saved', newShoeData);

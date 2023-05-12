@@ -8,7 +8,7 @@ exports.createShoe = async (shoe) => {
   return await ShoeModel.create(shoe);
 };
 exports.getShoeById = async (id) => {
-  return await ShoeModel.findById(id).populate('brand');
+  return await ShoeModel.findById(id).populate('brand').populate('categories');
 };
  
 exports.updateShoe = async (id, shoe) => {

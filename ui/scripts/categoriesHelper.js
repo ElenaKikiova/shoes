@@ -43,9 +43,10 @@ const getCategoriesDropdown = () => {
     for(let i = 0; i < categories.length; i++){
       categoryItems += `<option value="${categories[i]._id}">${categories[i].name}</option>`;
     }
+    console.log(categoryItems)
+    document.getElementById("categoriesDropdown").innerHTML = categoryItems;
   });
   
-  document.getElementById("categoriesDropdown").innerHTML = categoryItems;
 }
 
 const renderCategoryItem = (category) => {

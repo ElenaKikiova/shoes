@@ -23,7 +23,7 @@ const shoeSchema = new Schema({
     default: Date.now,
   },
   brand: { type: mongoose.Types.ObjectId, ref: 'BrandModel' },
-  categories: [{ type: mongoose.Types.ObjectId, ref: 'CategroryModel' }]
+  categories: [{ type: mongoose.Types.ObjectId, ref: 'CategoryModel' }]
 },
 { collection: "shoes" }
 );
