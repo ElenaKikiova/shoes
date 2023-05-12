@@ -1,4 +1,4 @@
-import { get } from "./httpService.js";
+import { get, handleError, post, put } from "./httpService.js";
 import { showErrors } from "./scripts/formsHelper.js";
 
 const id = new URLSearchParams(window.location.search).get('id');
@@ -23,7 +23,7 @@ else {
 
 const validate = (data) => {
   const errors = [];
-  if(data.name.length < 5) errors.push('name');
+  if(data.name.length === 0) errors.push('name');
   if(data.description.length < 5) errors.push('description');
 
   showErrors(errors);
@@ -40,7 +40,17 @@ document.getElementById("save").addEventListener("click", () => {
   const isValid = validate(newBrandData);
   console.log('is valid:', isValid);
   if(isValid){
-    // redirectToBrands();
+    
+    if(id){
+      put("/brands/" + id, newBrandData).then((data) => {
+        redirectToBrands();
+      }, handleError)
+    }
+    else {
+      post("/brands", newBrandData).then((data) => {
+        redirectToBrands();
+      }, handleError)
+    }
   }
 });
 
