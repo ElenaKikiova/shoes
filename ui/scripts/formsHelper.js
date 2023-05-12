@@ -1,3 +1,5 @@
+import { deleteConfirmed } from "./httpService.js";
+
 const showErrors = (errors) => {
   console.log('errors', errors);
   
@@ -8,4 +10,14 @@ const showErrors = (errors) => {
   }
 };
 
-export { showErrors }
+const deleteOnClick = (id, callback) => {
+  const isConfirmed = document.querySelector(`.note[data-id="${id}"]`).style.display === 'block';
+  if(!isConfirmed){
+    document.querySelector(`.note[data-id="${id}"]`).style.display = 'block';
+  }
+  else {
+    callback();
+  }
+}
+
+export { showErrors, deleteOnClick }

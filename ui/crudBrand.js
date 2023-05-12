@@ -1,4 +1,4 @@
-import { get, handleError, post, put } from "./httpService.js";
+import { get, handleError, post, put } from "./scripts/httpService.js";
 import { showErrors } from "./scripts/formsHelper.js";
 
 const id = new URLSearchParams(window.location.search).get('id');

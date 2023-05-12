@@ -1,4 +1,4 @@
-import { API_URL } from "./constants.js";
+import { API_URL } from "../constants.js";
 
 async function get(url = "") {
   // Default options are marked with *
@@ -70,5 +70,6 @@ async function deleteConfirmed(url = "") {
 const handleError = (error) => {
   console.error('ERROR', error)
 }
+
 
 export { get, post, put, deleteConfirmed, handleError }

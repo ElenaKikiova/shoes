@@ -1,4 +1,5 @@
-import { deleteConfirmed, get } from "../httpService.js";
+import { deleteConfirmed, get, handleError } from "./httpService.js";
+import { deleteOnClick } from "./formsHelper.js";
 
 const getBrandsList = () => {
 
@@ -25,18 +26,12 @@ const getBrandsList = () => {
     const deleteButtons = document.getElementsByClassName("delete");
 
     for(let i = 0; i < deleteButtons.length; i++) {
-      deleteButtons[i].addEventListener("click", () => {
-        const id = deleteButtons[i].getAttribute("data-id");
-        const isConfirmed = document.querySelector(`.note[data-id="${id}"]`).style.display === 'block';
-        if(!isConfirmed){
-          document.querySelector(`.note[data-id="${id}"]`).style.display = 'block';
-        }
-        else {
-          deleteConfirmed("/brands/" + id).then((response) => {
-            console.log(response)
-          })
-        }
-      })
+      const id = deleteButtons[i].getAttribute("data-id");
+      deleteButtons[i].addEventListener("click", () => deleteOnClick(id, () => {
+        deleteConfirmed(`/brands/${id}`).then((response) => {
+          getBrandsList();
+        }, handleError)
+      }))
     }
 
   });
@@ -60,8 +55,10 @@ const renderBrandItem = (brand) => {
   return `<div class="brandItem" data-id="${brand._id}">
   <div>${brand.name}</div>
   <div class="note" data-id="${brand._id}">Click again to confirm delete</div>
-  <div><button class="edit" data-id="${brand._id}">Edit</button>
-  <button class="delete" data-id="${brand._id}">Delete</button>
+  <div>
+    <button class="edit" data-id="${brand._id}">Edit</button>
+    <button class="delete" data-id="${brand._id}">Delete</button>
+  </div>
   </div>`;
 }
 

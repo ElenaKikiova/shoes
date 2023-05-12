@@ -1,4 +1,4 @@
-import { get } from "../httpService.js";
+import { get } from "./httpService.js";
 
 const getShoeList = () => {
 
@@ -43,8 +43,8 @@ const renderShoeDetails = (shoe) => {
       <div id="shoeDetails--gender">Suitable for: ${shoe.gender.join(', ').replace('m', 'Men').replace('f', 'Women')}</div>
       <div id="shoeDetails--price">${shoe.price}lv</div>
       
-      <div class="note">Click again to confirm delete</div>
-      <button id="openEdit">Edit</button><button id="deleteShoe">Delete</button>
+      <div class="note" data-id="${shoe._id}">Click again to confirm delete</div>
+      <button id="openEdit">Edit</button><button id="deleteShoe" data-id="${shoe._id}">Delete</button>
     </div>
   </div>`
 }

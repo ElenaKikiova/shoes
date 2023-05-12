@@ -1,7 +1,7 @@
-import { deleteConfirmed, get, handleError, post, put } from "./httpService.js";
+import { deleteConfirmed, get, handleError, post, put } from "./scripts/httpService.js";
 import { getBrandsDropdown } from "./scripts/brandsHelper.js";
 import { getCategoriesDropdown } from "./scripts/categoriesHelper.js";
-import { showErrors } from "./scripts/formsHelper.js";
+import { deleteOnClick, showErrors } from "./scripts/formsHelper.js";
 import { renderShoeDetails } from "./scripts/shoesHelper.js";
 
 const id = new URLSearchParams(window.location.search).get('id');
@@ -18,6 +18,9 @@ const brandsDropdown = document.getElementById("brandsDropdown");
 
 const defaultImg = 'https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg';
 
+const redirectToShoes = () => {
+  window.location.href = 'index.html';
+}
 
 imageURL.addEventListener("input", () => {
   console.log(imageURL)
@@ -41,17 +44,11 @@ if(id){
     document.getElementById("editShoe").style.display = 'block';
   });
 
-  document.getElementById("deleteShoe").addEventListener("click", () => {
-    const isConfirmed = document.getElementsByClassName("note")[0].style.display === 'block';
-    if(!isConfirmed){
-      document.getElementsByClassName("note")[0].style.display = 'block';
-    }
-    else {
-      deleteConfirmed("/shoes/" + id).then((response) => {
-        redirectToShoes();
-      })
-    }
-  })
+  document.getElementById("deleteShoe").addEventListener("click", () => deleteOnClick(id, () => {
+    deleteConfirmed(`/shoes/${id}`).then((response) => {
+      redirectToShoes();
+    }, handleError)
+  }))
 
   /* Edit shoe */
 
@@ -84,10 +81,6 @@ else {
   getBrandsDropdown(false);
   getCategoriesDropdown();
 
-}
-
-const redirectToShoes = () => {
-  window.location.href = 'index.html';
 }
 
 const validate = (data) => {
