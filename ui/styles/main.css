@@ -48,6 +48,11 @@ h2{
   margin: 0 1rem;
 }
 
+.d-f {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 h2:hover{
   color: #333;

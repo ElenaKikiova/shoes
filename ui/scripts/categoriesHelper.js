@@ -1,37 +1,19 @@
-import { deleteOnClick } from "./formsHelper.js";
-import { deleteConfirmed, get, handleError } from "./httpService.js";
+import { getUrlWithParams } from "./filtersHelper.js";
+import { get } from "./httpService.js";
+import { handleEditAndDeleteButtons } from "./listHelper.js";
+import { setResultsCount } from "./paginatorHelper.js";
 
-const getCategoriesList = () => {
+const getCategoriesList = (filters = {}) => {
 
-  get('/categories').then(async (response) => {
+  const urlWithParams = getUrlWithParams('/categories', filters);
+  get(urlWithParams).then(async (response) => {
     const categories = (await response.json()).data;
     console.log(categories)
-    let categoryItems = '';
 
-    for(let i = 0; i < categories.length; i++){
-      categoryItems += renderCategoryItem(categories[i])
-    }
-    
-    document.getElementById("categoriesList").innerHTML = categoryItems;
+    renderCategoryItems(categories);
 
-    const editButtons = document.getElementsByClassName("edit");
-
-    for(let i = 0; i < editButtons.length; i++) {
-      editButtons[i].addEventListener("click", () => {
-        window.location.href = "category.html?id=" + editButtons[i].getAttribute("data-id");
-      })
-    }
-    
-    const deleteButtons = document.getElementsByClassName("delete");
-
-    for(let i = 0; i < deleteButtons.length; i++) {
-      const id = deleteButtons[i].getAttribute("data-id");
-      deleteButtons[i].addEventListener("click", () => deleteOnClick(id, () => {
-        deleteConfirmed(`/categories/${id}`).then((response) => {
-          getCategoriesList();
-        }, handleError)
-      }))
-    }
+    handleEditAndDeleteButtons('category', 'categories');
+    setResultsCount(categories);
 
   });
 }
@@ -54,16 +36,21 @@ const getCategoriesDropdown = (afterLoading) => {
   
 }
 
-const renderCategoryItem = (category) => {
-  return `<div class="categoryItem" data-id="${category._id}">
-  <div>${category.name}</div>
-  <div class="note" data-id="${category._id}">Click again to confirm delete</div>
-  <div>
-    <button class="edit" data-id="${category._id}">Edit</button>
-    <button class="delete" data-id="${category._id}">Delete</button>
-  </div>
-  </div>`;
+const renderCategoryItems = (categories) => {
+  let categoryItems = '';
+  for(let i = 0; i < categories.length; i++){
+    const category = categories[i];
+    categoryItems += `<div class="categoryItem" data-id="${category._id}">
+      <div>${category.name}</div>
+      <div class="note" data-id="${category._id}">Click again to confirm delete</div>
+      <div>
+        <button class="edit" data-id="${category._id}">Edit</button>
+        <button class="delete" data-id="${category._id}">Delete</button>
+      </div>
+    </div>`
+  }
+  document.getElementById("categoriesList").innerHTML = categoryItems;
 }
 
 
-export { getCategoriesList, renderCategoryItem, getCategoriesDropdown }
+export { getCategoriesList, getCategoriesDropdown }

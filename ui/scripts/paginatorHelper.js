@@ -21,7 +21,6 @@ const getPaginator = (itemCount, currentPage) => {
     })
   }
 
-  document.getElementById("resultsCount").innerHTML = itemCount;
 }
 
 const renderPaginatorItem = (page, currentPage) => {
@@ -45,5 +44,10 @@ const changePaginator = () => {
   getShoeList();
 }
 
+const setResultsCount = (data) => {
+  const count = typeof data === 'number' ? data : data.length;
+  document.getElementById("resultsCount").innerHTML = count;
+  document.getElementById("noResults").style.display = count === 0 ? 'block' : 'none';
+}
 
-export { getPaginator, renderPaginatorItem, changePaginator, setCurrentPage, getCurrentPage }
+export { getPaginator, renderPaginatorItem, changePaginator, setCurrentPage, getCurrentPage, setResultsCount }

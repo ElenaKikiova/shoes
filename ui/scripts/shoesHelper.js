@@ -1,6 +1,6 @@
 import { getUrlWithParams } from "./filtersHelper.js";
 import { get } from "./httpService.js";
-import { getCurrentPage, getPaginator } from "./paginatorHelper.js";
+import { getCurrentPage, getPaginator, setResultsCount } from "./paginatorHelper.js";
 
 const getShoeList = (filters = {}) => {
 
@@ -13,11 +13,7 @@ const getShoeList = (filters = {}) => {
     const shoes = reponseJSON.data;
     const count = reponseJSON.count;
 
-    for(let i = 0; i < shoes.length; i++){
-      shoeItems += renderShoeItem(shoes[i]);
-    }
-    
-    document.getElementById("shoeList").innerHTML = shoeItems;
+    renderShoeItems(shoes);
   
     shoeItems = document.getElementsByClassName("shoeItem");
   
@@ -28,18 +24,23 @@ const getShoeList = (filters = {}) => {
     }
 
     getPaginator(count, Number(getCurrentPage()));
-
-    document.getElementById("noResults").style.display = shoes.length === 0 ? 'block' : 'none';
+    setResultsCount(count);
   });
 }
 
 
-const renderShoeItem = (shoe) => {
-  return `<div class="shoeItem" data-id="${shoe._id}">
-    <div class="shoeItem--image" style="background-image: url(${shoe.imageURL})"></div>
-    <div class="shoeItem--label">${shoe.name}</div>
-    <div class="shoeItem--price">${shoe.price}lv</div>
-  </div>`
+const renderShoeItems = (shoes) => {
+  let shoeItems = '';
+  for(let i = 0; i < shoes.length; i++){
+    const shoe = shoes[i];
+    shoeItems += `<div class="shoeItem" data-id="${shoe._id}">
+      <div class="shoeItem--image" style="background-image: url(${shoe.imageURL})"></div>
+      <div class="shoeItem--label">${shoe.name}</div>
+      <div class="shoeItem--price">${shoe.price}lv</div>
+    </div>`;
+  }
+  
+  document.getElementById("shoeList").innerHTML = shoeItems;
 }
 
 
@@ -59,4 +60,4 @@ const renderShoeDetails = (shoe) => {
 }
 
 
-export { getShoeList, renderShoeItem, renderShoeDetails }
+export { getShoeList, renderShoeDetails }

@@ -1,7 +1,9 @@
 const CategoryModel = require("../schemas/categorySchema");
+const { readSearchParams } = require("../searchHelper");
  
-exports.getAllCategories = async () => {
-  return await CategoryModel.find();
+exports.getAllCategories = async (query) => {
+  const searchParams = readSearchParams(query);
+  return await CategoryModel.find(searchParams);
 };
  
 exports.createCategory = async (category) => {

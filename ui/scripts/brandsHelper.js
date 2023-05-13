@@ -1,6 +1,8 @@
 import { deleteConfirmed, get, handleError } from "./httpService.js";
 import { deleteOnClick } from "./formsHelper.js";
 import { getUrlWithParams } from "./filtersHelper.js";
+import { handleEditAndDeleteButtons } from "./listHelper.js";
+import { setResultsCount } from "./paginatorHelper.js";
 
 const getBrandsList = (filters = {}) => {
 
@@ -12,32 +14,11 @@ const getBrandsList = (filters = {}) => {
     const brands = (await response.json()).data;
     console.log(brands)
 
-    for(let i = 0; i < brands.length; i++){
-      brandItems += renderBrandItem(brands[i])
-    }
-    
-    document.getElementById("brandsList").innerHTML = brandItems;
+    renderBrandItems(brands);
 
-    const editButtons = document.getElementsByClassName("edit");
+    handleEditAndDeleteButtons('brand', 'brands');
 
-    for(let i = 0; i < editButtons.length; i++) {
-      editButtons[i].addEventListener("click", () => {
-        window.location.href = "brand.html?id=" + editButtons[i].getAttribute("data-id");
-      })
-    }
-    
-    const deleteButtons = document.getElementsByClassName("delete");
-
-    for(let i = 0; i < deleteButtons.length; i++) {
-      const id = deleteButtons[i].getAttribute("data-id");
-      deleteButtons[i].addEventListener("click", () => deleteOnClick(id, () => {
-        deleteConfirmed(`/brands/${id}`).then((response) => {
-          getBrandsList();
-        }, handleError)
-      }))
-    }
-
-    document.getElementById("noResults").style.display = brands.length === 0 ? 'block' : 'none';
+    setResultsCount(brands);
   });
 }
 
@@ -55,15 +36,21 @@ const getBrandsDropdown = (search) => {
 }
 
 
-const renderBrandItem = (brand) => {
-  return `<div class="brandItem" data-id="${brand._id}">
-  <div>${brand.name}</div>
-  <div class="note" data-id="${brand._id}">Click again to confirm delete</div>
-  <div>
-    <button class="edit" data-id="${brand._id}">Edit</button>
-    <button class="delete" data-id="${brand._id}">Delete</button>
-  </div>
-  </div>`;
+const renderBrandItems = (brands) => {
+  let brandItems = '';
+  for(let i = 0; i < brands.length; i++){
+    const brand = brands[i];
+    brandItems += `<div class="brandItem" data-id="${brand._id}">
+      <div>${brand.name}</div>
+      <div class="note" data-id="${brand._id}">Click again to confirm delete</div>
+      <div>
+        <button class="edit" data-id="${brand._id}">Edit</button>
+        <button class="delete" data-id="${brand._id}">Delete</button>
+      </div>
+    </div>`;
+  }
+  
+  document.getElementById("brandsList").innerHTML = brandItems;
 }
 
-export { getBrandsList, renderBrandItem, getBrandsDropdown }
+export { getBrandsList, getBrandsDropdown }
