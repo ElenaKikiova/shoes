@@ -1,16 +1,18 @@
 
 import { getCurrentPage } from "./paginatorHelper.js";
 
-const getUrlWithParams = (url, filters,  pagination) => {
-  console.log(url, filters)
+const getUrlWithParams = (url, filters) => {
+  console.log(url, filters);
 
   // pagination filters
-  if(pagination){
+  if(document.getElementById("pageSize")){
     filters.pageSize = Number(document.getElementById("pageSize").value);
     filters.pageNumber = getCurrentPage();
   }
 
-  return url + '?' + new URLSearchParams(filters).toString();
+  const hasFilters = Object.keys(filters).length > 0;
+
+  return url + (hasFilters ? '?' + new URLSearchParams(filters).toString() : '');
 }
 
 export { getUrlWithParams }

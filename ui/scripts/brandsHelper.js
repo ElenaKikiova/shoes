@@ -1,11 +1,14 @@
 import { deleteConfirmed, get, handleError } from "./httpService.js";
 import { deleteOnClick } from "./formsHelper.js";
+import { getUrlWithParams } from "./filtersHelper.js";
 
-const getBrandsList = () => {
+const getBrandsList = (filters = {}) => {
 
   let brandItems = '';
 
-  get('/brands').then(async (response) => {
+  const urlWithParams = getUrlWithParams('/brands', filters);
+
+  get(urlWithParams).then(async (response) => {
     const brands = (await response.json()).data;
     console.log(brands)
 
@@ -34,6 +37,7 @@ const getBrandsList = () => {
       }))
     }
 
+    document.getElementById("noResults").style.display = brands.length === 0 ? 'block' : 'none';
   });
 }
 

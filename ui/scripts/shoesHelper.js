@@ -6,7 +6,7 @@ const getShoeList = (filters = {}) => {
 
   let shoeItems = '';
 
-  const urlWithParams = getUrlWithParams('/shoes', filters, true);
+  const urlWithParams = getUrlWithParams('/shoes', filters);
 
   get(urlWithParams).then(async (response) => {
     const reponseJSON = (await response.json());

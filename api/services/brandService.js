@@ -1,7 +1,9 @@
 const BrandModel = require("../schemas/brandSchema");
+const { readSearchParams } = require("../searchHelper");
  
-exports.getAllBrands = async () => {
-  return await BrandModel.find();
+exports.getAllBrands = async (query) => {
+  const searchParams = readSearchParams(query);
+  return await BrandModel.find(searchParams);
 };
  
 exports.createBrand = async (brand) => {

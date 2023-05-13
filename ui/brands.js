@@ -7,6 +7,7 @@ document.getElementById("applyFilters").addEventListener("click", () => {
   }
 
   console.log(filters);
+  getBrandsList(filters);
 });
 
 getBrandsList();
