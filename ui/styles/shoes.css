@@ -28,6 +28,12 @@
   margin: 1rem auto;
 }
 
+.shoeItem--brand {
+  font-size: 1rem;
+  text-align: center;
+  margin: 1rem auto;
+}
+
 .shoeItem--price {
   text-align: center;
   color: #444;
@@ -68,7 +74,12 @@
   margin: 1rem 0;
 }
 
-#shoeDetails--gender, #shoeDetails--sizes {
+#shoeDetails--brand {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+#shoeDetails--categories, #shoeDetails--season, #shoeDetails--gender, #shoeDetails--sizes {
   margin-bottom: 0.5rem;
 } 
 

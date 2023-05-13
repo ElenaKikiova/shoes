@@ -36,6 +36,7 @@ const renderShoeItems = (shoes) => {
     shoeItems += `<div class="shoeItem" data-id="${shoe._id}">
       <div class="shoeItem--image" style="background-image: url(${shoe.imageURL})"></div>
       <div class="shoeItem--label">${shoe.name}</div>
+      <div class="shoeItem--brand">${shoe.brand.name}</div>
       <div class="shoeItem--price">${shoe.price}lv</div>
     </div>`;
   }
@@ -49,6 +50,9 @@ const renderShoeDetails = (shoe) => {
     <div class="shoeDetails--image" style="background-image: url(${shoe.imageURL})"></div>
     <div id="shoeDetails--leftpanel">
       <div id="shoeDetails--label">${shoe.name}</div>
+      <div id="shoeDetails--brand">By ${shoe.brand.name}</div>
+      <div id="shoeDetails--categories">Categories: ${shoe.categories.map((c) => c.name).join(', ')}</div>
+      <div id="shoeDetails--season">Season: ${shoe.categories.map((c) => c.season).join(', ')}</div>
       <div id="shoeDetails--sizes">Comes in sizes: ${shoe.sizes.join(' - ')} (EU)</div>
       <div id="shoeDetails--gender">Suitable for: ${shoe.gender.join(', ').replace('m', 'Men').replace('f', 'Women')}</div>
       <div id="shoeDetails--price">${shoe.price}lv</div>

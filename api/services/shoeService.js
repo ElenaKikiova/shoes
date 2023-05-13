@@ -10,7 +10,8 @@ exports.getAllShoes = async (query) => {
   const data = await ShoeModel.find(searchParams)
   .skip(query.pageSize * (query.pageNumber - 1))
   .limit(query.pageSize)
-  .populate('brand');
+  .populate('brand')
+  .populate('categories');
 
   return {
     data,
