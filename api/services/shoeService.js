@@ -4,7 +4,7 @@ exports.getAllShoes = async (query) => {
   let searchParams = {};
 
   if(query.name){
-    searchParams.name = new RegExp(searchParams.name, "i");
+    searchParams.name = new RegExp(query.name, "i");
   }
 
   if(query.minPrice && query.minPrice != 0){
