@@ -64,12 +64,12 @@ if(id){
   getBrandsDropdown(false);
   brandsDropdown.value = shoe.brandId;
 
-  getCategoriesDropdown();
-
-  for(let i = 0; i < shoe.categories.length; i++){
-    console.log(shoe.categories[i]._id)
-    document.querySelector(`#categoriesDropdown>option[value="${shoe.categories[i]._id}"]`).selected = true;
-  }
+  getCategoriesDropdown(() => {
+    for(let i = 0; i < shoe.categories.length; i++){
+      const option = document.querySelector(`#categoriesDropdown>option[value="${shoe.categories[i]._id}"]`);
+      if(option) option.selected = true;
+    }
+  });
 
 }
 else {
