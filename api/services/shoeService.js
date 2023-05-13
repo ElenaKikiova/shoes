@@ -16,7 +16,11 @@ exports.getAllShoes = async (query) => {
     searchParams.price = {...searchParams.price, $lte: query.maxPrice }
   }
 
-  console.log(query, searchParams)
+  if(query.brandId){
+    searchParams.brand = {_id: query.brandId}
+  }
+
+  console.log('Search', searchParams)
 
   const data = await ShoeModel.find(searchParams)
   .skip(query.pageSize * (query.pageNumber - 1))
