@@ -1,7 +1,6 @@
 const ShoeModel = require("../schemas/shoeSchema");
  
 exports.getAllShoes = async (query) => {
-  const count = await ShoeModel.count();
   let searchParams = {};
 
   if(query.name){
@@ -21,6 +20,8 @@ exports.getAllShoes = async (query) => {
   }
 
   console.log('Search', searchParams)
+  
+  const count = await ShoeModel.countDocuments(searchParams);
 
   const data = await ShoeModel.find(searchParams)
   .skip(query.pageSize * (query.pageNumber - 1))

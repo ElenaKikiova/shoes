@@ -28,6 +28,8 @@ const getShoeList = (filters = {}) => {
     }
 
     getPaginator(count, Number(getCurrentPage()));
+
+    document.getElementById("noResults").style.display = shoes.length === 0 ? 'block' : 'none';
   });
 }
 
