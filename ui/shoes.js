@@ -1,4 +1,5 @@
 import { getBrandsDropdown } from "./scripts/brandsHelper.js";
+
 import { changePaginator } from "./scripts/paginatorHelper.js";
 import { getShoeList } from "./scripts/shoesHelper.js";
 
@@ -17,7 +18,7 @@ document.getElementById("applyFilters").addEventListener("click", () => {
   if(priceRange != '') filters.priceRange = priceRange;
   if(brandId != '') filters.brandId = brandId;
 
-  console.log(filters);
+  getShoeList(filters);
 });
 
 document.getElementById("pageSize").addEventListener("change", () => changePaginator())

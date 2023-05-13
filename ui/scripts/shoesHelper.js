@@ -1,14 +1,14 @@
+import { getUrlWithParams } from "./filtersHelper.js";
 import { get } from "./httpService.js";
 import { getCurrentPage, getPaginator } from "./paginatorHelper.js";
 
-const getShoeList = () => {
-
-  const pageSize = Number(document.getElementById("pageSize").value);
-  const currentPage = getCurrentPage();
+const getShoeList = (filters = {}) => {
 
   let shoeItems = '';
 
-  get(`/shoes?pageSize=${pageSize}&pageNumber=${currentPage}`).then(async (response) => {
+  const urlWithParams = getUrlWithParams('/shoes', filters, true);
+
+  get(urlWithParams).then(async (response) => {
     const reponseJSON = (await response.json());
     const shoes = reponseJSON.data;
     const count = reponseJSON.count;
@@ -27,7 +27,7 @@ const getShoeList = () => {
       })
     }
 
-    getPaginator(count, Number(currentPage));
+    getPaginator(count, Number(getCurrentPage()));
   });
 }
 
