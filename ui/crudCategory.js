@@ -26,7 +26,7 @@ const redirectToCategories = () => {
 
 const validate = (data) => {
   const errors = [];
-  if(data.name.length < 5 || data.name.length > 100) errors.push('name');
+  if(data.name.length === 0  || data.name.length > 100) errors.push('name');
   if(data.description.length < 5 || data.description.length > 100) errors.push('description');
 
   showErrors(errors);

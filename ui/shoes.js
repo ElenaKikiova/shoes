@@ -3,7 +3,6 @@ import { changePaginator, getPaginator } from "./scripts/paginatorHelper.js";
 import { getShoeList } from "./scripts/shoesHelper.js";
 
 getShoeList();
-getPaginator();
 
 getBrandsDropdown(true);
 
@@ -21,4 +20,4 @@ document.getElementById("applyFilters").addEventListener("click", () => {
   console.log(filters);
 });
 
-document.getElementById("pageSize").addEventListener("change", () => changePaginator(70))
+document.getElementById("pageSize").addEventListener("change", () => changePaginator())

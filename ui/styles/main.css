@@ -76,8 +76,17 @@ h2:hover{
 
 .paginatorItem {
   margin: 0.25rem;
-  padding: 0.25rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  width: 1.75rem;
+  height: 1.75rem;
   cursor: pointer;
+}
+
+.paginatorItem#active{
+  background-color: #999;
+  color: white;
 }
 
 .paginatorItem:hover {

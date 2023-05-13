@@ -86,7 +86,7 @@ else {
 
 const validate = (data) => {
   const errors = [];
-  if(data.name.length < 5 || data.name.length > 100) errors.push('name');
+  if(data.name.length === 0 || data.name.length > 100) errors.push('name');
   if(data.imageURL.length === 0 || data.imageURL.length > 1000) errors.push('imageURL');
   if(data.price < 1) errors.push('price');
   if(data.sizes[0] === '' || data.sizes[1] === '' || Number(data.sizes[0]) >= Number(data.sizes[1]) || Number(data.sizes[0]) < 1) errors.push('sizes');

@@ -1,10 +1,16 @@
 import { get } from "./httpService.js";
+import { getCurrentPage, getPaginator } from "./paginatorHelper.js";
 
 const getShoeList = () => {
 
+  const pageSize = Number(document.getElementById("pageSize").value);
+  const currentPage = getCurrentPage();
+
+  console.log(pageSize, currentPage)
+
   let shoeItems = '';
 
-  get('/shoes').then(async (response) => {
+  get(`/shoes?pageSize=${pageSize}&pageNumber=${currentPage}`).then(async (response) => {
     const shoes = (await response.json()).data;
     console.log(shoes)
 
@@ -21,6 +27,8 @@ const getShoeList = () => {
         window.location.href = "shoe.html?id=" + shoeItems[i].getAttribute("data-id");
       })
     }
+
+    getPaginator(shoes.length);
   });
 }
 

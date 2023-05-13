@@ -38,12 +38,12 @@ const getCategoriesList = () => {
 
 const getCategoriesDropdown = (afterLoading) => {
   let categoryItems = '';
+
   get('/categories').then(async (response) => {
     const categories = (await response.json()).data;
     for(let i = 0; i < categories.length; i++){
       categoryItems += `<option value="${categories[i]._id}">${categories[i].name}</option>`;
     }
-    console.log(categoryItems)
     document.getElementById("categoriesDropdown").innerHTML = categoryItems;
     
     // if there is passed a function that should execute after loading (selecting items in the dropdown for example)
