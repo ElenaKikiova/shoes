@@ -1,35 +1,36 @@
 import { getShoeList } from "./shoesHelper.js";
 
-const getPaginator = (itemCount) => {
+const getPaginator = (itemCount, currentPage) => {
 
   const pageSize = Number(document.getElementById("pageSize").value);
   const left = itemCount % pageSize;
   const pageCount = left === 0 ? itemCount / pageSize : Math.floor(itemCount / pageSize) + 1;
 
-  console.log(pageCount, pageSize)
   let paginatorItems = '';
   for(let i = 0; i < pageCount; i++){
-    paginatorItems += renderPaginatorItem(i);
+    paginatorItems += renderPaginatorItem(i, currentPage);
   }
 
   document.getElementById("paginator").innerHTML = paginatorItems;
-  setCurrentPage(1);
 
   paginatorItems = document.getElementsByClassName("paginatorItem");
   for(let i = 0; i < paginatorItems.length; i++){
     paginatorItems[i].addEventListener("click", () => {
       setCurrentPage(paginatorItems[i].getAttribute("data-page-number"));
+      getShoeList();
     })
   }
+
+  document.getElementById("resultsCount").innerHTML = itemCount;
 }
 
-const renderPaginatorItem = (page) => {
-  return `<div class="paginatorItem" data-page-number="${page + 1}">${page + 1}</div>`;
+const renderPaginatorItem = (page, currentPage) => {
+  console.log(currentPage, page);
+  return `<div class="paginatorItem" data-page-number="${page + 1}" ${currentPage === page + 1 ? 'id="active"' : ''}>${page + 1}</div>`;
 }
 
 const getCurrentPage = () => {
   const currentlyActive = document.querySelector(`.paginatorItem#active`);
-  console.log(currentlyActive)
   return currentlyActive ? currentlyActive.getAttribute("data-page-number") : 1;
 }
 
@@ -40,7 +41,6 @@ const setCurrentPage = (pageNumber) => {
 }
 
 const changePaginator = () => {
-  console.log('e')
   setCurrentPage(1);
   getShoeList();
 }

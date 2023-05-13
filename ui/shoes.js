@@ -1,5 +1,5 @@
 import { getBrandsDropdown } from "./scripts/brandsHelper.js";
-import { changePaginator, getPaginator } from "./scripts/paginatorHelper.js";
+import { changePaginator } from "./scripts/paginatorHelper.js";
 import { getShoeList } from "./scripts/shoesHelper.js";
 
 getShoeList();

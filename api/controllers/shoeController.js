@@ -2,8 +2,9 @@ const shoeService = require("../services/shoeService");
  
 exports.getAllShoes = async (req, res) => {
   try {
-    const shoes = await shoeService.getAllShoes();
-    res.json({ data: shoes, status: "success" });
+    const query = req.query;
+    const data = await shoeService.getAllShoes(query.pageSize, query.pageNumber);
+    res.json({ ...data, status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

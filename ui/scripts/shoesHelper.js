@@ -6,13 +6,12 @@ const getShoeList = () => {
   const pageSize = Number(document.getElementById("pageSize").value);
   const currentPage = getCurrentPage();
 
-  console.log(pageSize, currentPage)
-
   let shoeItems = '';
 
   get(`/shoes?pageSize=${pageSize}&pageNumber=${currentPage}`).then(async (response) => {
-    const shoes = (await response.json()).data;
-    console.log(shoes)
+    const reponseJSON = (await response.json());
+    const shoes = reponseJSON.data;
+    const count = reponseJSON.count;
 
     for(let i = 0; i < shoes.length; i++){
       shoeItems += renderShoeItem(shoes[i]);
@@ -28,7 +27,7 @@ const getShoeList = () => {
       })
     }
 
-    getPaginator(shoes.length);
+    getPaginator(count, Number(currentPage));
   });
 }
 

@@ -23,7 +23,6 @@ const redirectToShoes = () => {
 }
 
 imageURL.addEventListener("input", () => {
-  console.log(imageURL)
   imagePreview.style.backgroundImage = `url(${imageURL.value})` ?? defaultImg;
 })
 

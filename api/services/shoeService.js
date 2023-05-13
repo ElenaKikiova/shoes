@@ -1,7 +1,16 @@
 const ShoeModel = require("../schemas/shoeSchema");
  
-exports.getAllShoes = async () => {
-  return await ShoeModel.find().populate('brand');
+exports.getAllShoes = async (pageSize, pageNumber) => {
+  const count = await ShoeModel.count();
+  const data = await ShoeModel.find()
+  .skip(pageSize * (pageNumber - 1))
+  .limit(pageSize)
+  .populate('brand');
+
+  return {
+    data,
+    count: count
+  }
 };
  
 exports.createShoe = async (shoe) => {
