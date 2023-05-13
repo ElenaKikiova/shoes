@@ -15,7 +15,11 @@ document.getElementById("applyFilters").addEventListener("click", () => {
   const filters = {}
   
   if(nameSearch != '') filters.name = nameSearch;
-  if(priceRange != '') filters.priceRange = priceRange;
+  if(priceRange != '') {
+    const regex = priceRange.match(new RegExp("([0-9]+)-([0-9]*)"));
+    if(regex[1] != 0) filters.minPrice = regex[1];
+    if(regex[2] != '') filters.maxPrice = regex[2];
+  }
   if(brandId != '') filters.brandId = brandId;
 
   getShoeList(filters);

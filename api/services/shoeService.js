@@ -1,10 +1,26 @@
 const ShoeModel = require("../schemas/shoeSchema");
  
-exports.getAllShoes = async (pageSize, pageNumber) => {
+exports.getAllShoes = async (query) => {
   const count = await ShoeModel.count();
-  const data = await ShoeModel.find()
-  .skip(pageSize * (pageNumber - 1))
-  .limit(pageSize)
+  let searchParams = {};
+
+  if(query.name){
+    searchParams.name = new RegExp(searchParams.name, "i");
+  }
+
+  if(query.minPrice && query.minPrice != 0){
+    searchParams.price = { $gte: query.minPrice }
+  }
+
+  if(query.maxPrice){
+    searchParams.price = {...searchParams.price, $lte: query.maxPrice }
+  }
+
+  console.log(query, searchParams)
+
+  const data = await ShoeModel.find(searchParams)
+  .skip(query.pageSize * (query.pageNumber - 1))
+  .limit(query.pageSize)
   .populate('brand');
 
   return {
