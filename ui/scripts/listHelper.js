@@ -1,6 +1,6 @@
 import { deleteOnClick } from "./formsHelper.js";
 
-const handleEditAndDeleteButtons = (redirectUrl, tableName) => {
+const handleEditAndDeleteButtons = (redirectUrl, tableName, getList) => {
   
   const editButtons = document.getElementsByClassName("edit");
 
@@ -16,7 +16,7 @@ const handleEditAndDeleteButtons = (redirectUrl, tableName) => {
     const id = deleteButtons[i].getAttribute("data-id");
     deleteButtons[i].addEventListener("click", () => deleteOnClick(id, () => {
       deleteConfirmed(`/${tableName}/${id}`).then((response) => {
-        getCategoriesList();
+        getList();
       }, handleError)
     }))
   }

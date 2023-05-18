@@ -1,12 +1,9 @@
-import { deleteConfirmed, get, handleError } from "./httpService.js";
-import { deleteOnClick } from "./formsHelper.js";
+import { get } from "./httpService.js";
 import { getUrlWithParams } from "./filtersHelper.js";
 import { handleEditAndDeleteButtons } from "./listHelper.js";
 import { setResultsCount } from "./paginatorHelper.js";
 
 const getBrandsList = (filters = {}) => {
-
-  let brandItems = '';
 
   const urlWithParams = getUrlWithParams('/brands', filters);
 
@@ -16,13 +13,13 @@ const getBrandsList = (filters = {}) => {
 
     renderBrandItems(brands);
 
-    handleEditAndDeleteButtons('brand', 'brands');
+    handleEditAndDeleteButtons('brand', 'brands', getBrandsList);
 
     setResultsCount(brands);
   });
 }
 
-const getBrandsDropdown = (search) => {
+const getBrandsDropdown = (search, afterLoading) => {
   let brandItems = search ? '<option value="">All</option>' : '';
 
   get('/brands').then(async (response) => {
@@ -32,6 +29,10 @@ const getBrandsDropdown = (search) => {
     }
 
     document.getElementById("brandsDropdown").innerHTML = brandItems;
+
+    if(afterLoading) {
+      afterLoading();
+    }
   });
 }
 

@@ -60,8 +60,9 @@ if(id){
   genderM.checked = shoe.gender.indexOf('m') > -1;
   price.value = shoe.price;
 
-  getBrandsDropdown(false);
-  brandsDropdown.value = shoe.brandId;
+  getBrandsDropdown(false, () => {
+    brandsDropdown.value = shoe.brandId;
+  });
 
   getCategoriesDropdown(() => {
     for(let i = 0; i < shoe.categories.length; i++){

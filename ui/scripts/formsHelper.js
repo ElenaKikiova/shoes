@@ -1,5 +1,3 @@
-import { deleteConfirmed } from "./httpService.js";
-
 const showErrors = (errors) => {
   console.log('errors', errors);
   

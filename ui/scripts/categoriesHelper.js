@@ -12,7 +12,7 @@ const getCategoriesList = (filters = {}) => {
 
     renderCategoryItems(categories);
 
-    handleEditAndDeleteButtons('category', 'categories');
+    handleEditAndDeleteButtons('category', 'categories', getCategoriesList);
     setResultsCount(categories);
 
   });
