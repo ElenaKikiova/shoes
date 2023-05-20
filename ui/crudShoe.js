@@ -3,6 +3,7 @@ import { getBrandsDropdown } from "./scripts/brandsHelper.js";
 import { getCategoriesDropdown } from "./scripts/categoriesHelper.js";
 import { deleteOnClick, showErrors } from "./scripts/formsHelper.js";
 import { renderShoeDetails } from "./scripts/shoesHelper.js";
+import { DEFAULT_IMAGE } from "./constants.js";
 
 const id = new URLSearchParams(window.location.search).get('id');
 
@@ -16,14 +17,13 @@ const genderM = document.getElementById("genderM");
 const price = document.getElementById("price");
 const brandsDropdown = document.getElementById("brandsDropdown");
 
-const defaultImg = 'https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg';
 
 const redirectToShoes = () => {
   window.location.href = 'index.html';
 }
 
 imageURL.addEventListener("input", () => {
-  imagePreview.style.backgroundImage = `url(${imageURL.value})` ?? defaultImg;
+  imagePreview.style.backgroundImage = `url(${imageURL.value})` ?? DEFAULT_IMAGE;
 })
 
 
@@ -61,7 +61,7 @@ if(id){
   price.value = shoe.price;
 
   getBrandsDropdown(false, () => {
-    brandsDropdown.value = shoe.brandId;
+    brandsDropdown.value = shoe.brand._id;
   });
 
   getCategoriesDropdown(() => {
@@ -76,7 +76,7 @@ else {
   document.getElementById("viewShoe").style.display = 'none';
   document.getElementById("editShoe").style.display = 'block';
 
-  imagePreview.style.backgroundImage = `url('${defaultImg}')`
+  imagePreview.style.backgroundImage = `url('${DEFAULT_IMAGE}')`
 
   document.querySelector("#editShoe>h3").innerHTML = 'Create shoe';
   getBrandsDropdown(false);

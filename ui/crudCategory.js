@@ -14,7 +14,7 @@ if(id){
     document.getElementById("name").value = category.name;
     document.getElementById("description").value = category.description;
     document.getElementById("season").value = category.season;
-  });
+  }, handleError);
 }
 else {
   document.querySelector("#editCategory>h3").innerHTML = 'Create category';

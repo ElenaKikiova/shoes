@@ -20,7 +20,6 @@ exports.createBrand = async (req, res) => {
  
 exports.getBrandById = async (req, res) => {
   try {
-    console.log(req.params)
     const brand = await brandService.getBrandById(req.params.id);
     res.json({ data: brand, status: "success" });
   } catch (err) {

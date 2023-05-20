@@ -1,5 +1,5 @@
 import { getUrlWithParams } from "./filtersHelper.js";
-import { get } from "./httpService.js";
+import { get, handleError } from "./httpService.js";
 import { handleEditAndDeleteButtons } from "./listHelper.js";
 import { setResultsCount } from "./paginatorHelper.js";
 
@@ -32,7 +32,7 @@ const getCategoriesDropdown = (afterLoading) => {
     if(afterLoading){
       afterLoading();
     }
-  });
+  }, handleError);
   
 }
 

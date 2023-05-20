@@ -1,4 +1,5 @@
 import { deleteOnClick } from "./formsHelper.js";
+import { deleteConfirmed, handleError } from "./httpService.js";
 
 const handleEditAndDeleteButtons = (redirectUrl, tableName, getList) => {
   

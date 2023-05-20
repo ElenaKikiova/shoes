@@ -6,8 +6,6 @@ document.getElementById("applyFilters").addEventListener("click", () => {
     name: nameSearch
   }
 
-  console.log(filters);
-
   getCategoriesList(filters);
 });
 

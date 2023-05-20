@@ -1,4 +1,4 @@
-import { get } from "./httpService.js";
+import { get, handleError } from "./httpService.js";
 import { getUrlWithParams } from "./filtersHelper.js";
 import { handleEditAndDeleteButtons } from "./listHelper.js";
 import { setResultsCount } from "./paginatorHelper.js";
@@ -9,14 +9,13 @@ const getBrandsList = (filters = {}) => {
 
   get(urlWithParams).then(async (response) => {
     const brands = (await response.json()).data;
-    console.log(brands)
 
     renderBrandItems(brands);
 
     handleEditAndDeleteButtons('brand', 'brands', getBrandsList);
 
     setResultsCount(brands);
-  });
+  }, handleError);
 }
 
 const getBrandsDropdown = (search, afterLoading) => {
