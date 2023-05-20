@@ -1,6 +1,8 @@
+import { guardRoute } from "./scripts/authHelper.js";
 import { showErrors } from "./scripts/formsHelper.js";
 import { get, handleError, post, put } from "./scripts/httpService.js";
 
+guardRoute();
 
 const id = new URLSearchParams(window.location.search).get('id');
 

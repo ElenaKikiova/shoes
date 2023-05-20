@@ -1,7 +1,10 @@
+import { guardRoute } from "./scripts/authHelper.js";
 import { getBrandsDropdown } from "./scripts/brandsHelper.js";
 
 import { changePaginator } from "./scripts/paginatorHelper.js";
 import { getShoeList } from "./scripts/shoesHelper.js";
+
+guardRoute();
 
 getShoeList();
 

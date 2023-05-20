@@ -8,7 +8,10 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.json())
 const { connect } = require("./mongodbSetup");
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, 'process.env') })
 
+const authRouter = require("./routes/authRoutes");
 const shoeRouter = require("./routes/shoeRoutes");
 const brandRouter = require("./routes/brandRoutes");
 const categoryRouter = require("./routes/categoryRoutes");
@@ -25,6 +28,7 @@ app.listen(3001, () => {
 connect();
  
 // use routes
+app.use("/api/auth", authRouter);
 app.use("/api/shoes", shoeRouter);
 app.use("/api/brands", brandRouter);
 app.use("/api/categories", categoryRouter);

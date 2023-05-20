@@ -4,6 +4,9 @@ import { getCategoriesDropdown } from "./scripts/categoriesHelper.js";
 import { deleteOnClick, showErrors } from "./scripts/formsHelper.js";
 import { renderShoeDetails } from "./scripts/shoesHelper.js";
 import { DEFAULT_IMAGE } from "./constants.js";
+import { guardRoute } from "./scripts/authHelper.js";
+
+guardRoute();
 
 const id = new URLSearchParams(window.location.search).get('id');
 
@@ -19,7 +22,7 @@ const brandsDropdown = document.getElementById("brandsDropdown");
 
 
 const redirectToShoes = () => {
-  window.location.href = 'index.html';
+  window.location.href = 'shoes.html';
 }
 
 imageURL.addEventListener("input", () => {

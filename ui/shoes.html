@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/shoes.css">
+  <title>The Shoe base</title>
+</head>
+<body>
+  
+  <div id="header">
+    <h1> Available shoes </h1>
+    <a href="categories.html"><h2>Categories</h2></a>
+    <a href="brands.html"><h2> Brands </h2></a>
+  </div>
+
+  <div id="filters">
+
+    <label> Name
+      <input type="text" id="name" />
+    </label>
+    
+    <label> Price range
+      <select id="priceRange">
+        <option value=""> All</option>
+        <option value="0-50"> < 50</option>
+        <option value="50-100">50-100</option>
+        <option value="100-150">100-150</option>
+        <option value="150-200">150-200</option>
+        <option value="200-">200 +</option>
+      </select>
+    </label>
+    
+    <label> Brand
+      <select id="brandsDropdown">
+      </select>
+    </label>
+
+    <button id="applyFilters">Apply</button>
+
+  </div>
+
+  <div id="paging">
+    <a href="shoe.html"><button id="create">Create shoe</button></a>
+    <div><span id="resultsCount">0</span> items found</div>
+    <label>Items per page:
+      <select id="pageSize">
+        <option>5</option>
+        <option>10</option>
+        <option>50</option>
+      </select>
+    </label>
+  </div>
+
+  <div id="shoeList">
+  </div>
+
+  <div id="noResults">
+    No shoes found
+  </div>
+
+  <div id="paginator">
+    
+  </div>
+
+  <!--Js-->
+  <script type="module" src="./shoes.js"></script>
+
+
+</body>
+</html>

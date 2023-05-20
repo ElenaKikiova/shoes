@@ -69,7 +69,6 @@ async function deleteConfirmed(url = "") {
 
 const handleError = (error) => {
   console.error('ERROR', error)
-  alert("An error occured, plese try again later.")
 }
 
 
