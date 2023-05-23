@@ -2,8 +2,8 @@ const brandService = require("../services/brandService");
  
 exports.getAllBrands = async (req, res) => {
   try {
-    const brands = await brandService.getAllBrands(req.query);
-    res.json({ data: brands, status: "success" });
+    const data = await brandService.getAllBrands(req.query);
+    res.json({ ...data, status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

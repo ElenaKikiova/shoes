@@ -2,8 +2,19 @@ const BrandModel = require("../schemas/brandSchema");
 const { readSearchParams } = require("../searchHelper");
  
 exports.getAllBrands = async (query) => {
+
   const searchParams = readSearchParams(query);
-  return await BrandModel.find(searchParams);
+
+  const count = await BrandModel.countDocuments(searchParams);
+
+  const data = await BrandModel.find(searchParams)
+  .skip(query.pageSize * (query.pageNumber - 1))
+  .limit(query.pageSize);
+
+  return {
+    data,
+    count: count
+  }
 };
  
 exports.createBrand = async (brand) => {

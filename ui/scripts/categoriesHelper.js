@@ -12,12 +12,12 @@ const getCategoriesList = (filters = {}) => {
     const categories = reponseJSON.data;
     const count = reponseJSON.count;
 
-    console.log(categories, count)
-
     renderCategoryItems(categories);
 
     handleEditAndDeleteButtons('category', 'categories', getCategoriesList);
+
     getPaginator(count, Number(getCurrentPage()), getCategoriesList);
+
     setResultsCount(count);
 
   });
