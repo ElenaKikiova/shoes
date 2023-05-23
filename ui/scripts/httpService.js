@@ -25,7 +25,6 @@ async function get(url = "") {
     }
     return response;
   } catch (error) {
-    console.log(error);
     handleError(error);
   }
 }

@@ -8,7 +8,6 @@ document.getElementById("login").addEventListener("click", () => {
     username, password
   }).then(async (response) => {
     const result = (await response.json());
-    console.log(result)
     if(result.data){
       document.getElementById("error").style.display = "none";
       localStorage.setItem("userToken", result.data.token);

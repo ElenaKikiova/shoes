@@ -31,12 +31,10 @@ router.use('/', (req, res, next) => {
       next();
     }
     else {
-      console.log('invalid token')
       res.status(401).json({ error: 'Invalid token', status: 401})
     }
   }
   else {
-    console.log('no token')
     res.status(401).json({ error: 'Not logged in', status: 401})
   }
 })

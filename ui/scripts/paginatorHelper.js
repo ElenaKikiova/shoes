@@ -22,7 +22,6 @@ const getPaginator = (itemCount, currentPage, getData) => {
 }
 
 const renderPaginatorItem = (page, currentPage) => {
-  console.log(currentPage, page);
   return `<div class="paginatorItem" data-page-number="${page + 1}" ${currentPage === page + 1 ? 'id="active"' : ''}>${page + 1}</div>`;
 }
 
