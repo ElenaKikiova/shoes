@@ -28,7 +28,7 @@ app.listen(3001, () => {
 connect();
  
 // use routes
-app.use("/api/auth", authRouter);
+app.use("/api", authRouter);
 app.use("/api/shoes", shoeRouter);
 app.use("/api/brands", brandRouter);
 app.use("/api/categories", categoryRouter);

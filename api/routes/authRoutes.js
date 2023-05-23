@@ -4,7 +4,7 @@ const UserModel = require("../schemas/userSchema");
 
 const router = express.Router();
  
-router.route("/login").post(async (req, res) => {
+router.route("/auth/login").post(async (req, res) => {
   try {
     console.log(req.body);
     const user = await UserModel.findOne({ username: req.body.username, password: req.body.password });
@@ -22,10 +22,15 @@ router.route("/login").post(async (req, res) => {
   }
 });
 
-const generateToken = (username) => {
-  // Validate User Here
-  // Then generate JWT Token
+router.use('/', (req, res, next) => {
+  console.log('middleware', req.headers);
+  next();
+}, (req, res, next) => {
+  console.log('Request Type:', req.method)
+  next()
+})
 
+const generateToken = (username) => {
   let data = {
     time: Date(),
     username: username
@@ -34,28 +39,18 @@ const generateToken = (username) => {
   return token;
 };
 
-// // Verification of JWT
-// app.get("/user/validateToken", (req, res) => {
-//   // Tokens are generally passed in header of request
-//   // Due to security reasons.
+// Verification of JWT
+const validateToken = (token) => {
 
-//   let tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
-//   let jwtSecretKey = process.env.JWT_SECRET_KEY;
+  let tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
+  let jwtSecretKey = process.env.JWT_SECRET_KEY;
 
-//   try {
-//       const token = req.header(tokenHeaderKey);
-
-//       const verified = jwt.verify(token, jwtSecretKey);
-//       if(verified){
-//           return res.send("Successfully Verified");
-//       }else{
-//           // Access Denied
-//           return res.status(401).send(error);
-//       }
-//   } catch (error) {
-//       // Access Denied
-//       return res.status(401).send(error);
-//   }
-// });
+  try {
+      const verified = jwt.verify(token, jwtSecretKey);
+      return verified;
+  } catch (error) {
+      return res.status(401).send(error);
+  }
+};
 
 module.exports = router;
