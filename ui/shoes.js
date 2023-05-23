@@ -28,4 +28,4 @@ document.getElementById("applyFilters").addEventListener("click", () => {
   getShoeList(filters);
 });
 
-document.getElementById("pageSize").addEventListener("change", () => changePaginator())
+document.getElementById("pageSize").addEventListener("change", () => changePaginator(getShoeList))
