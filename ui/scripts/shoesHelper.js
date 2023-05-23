@@ -25,9 +25,8 @@ const getShoeList = (filters = {}) => {
 
     getPaginator(count, Number(getCurrentPage()));
     setResultsCount(count);
-  }, handleError);
+  });
 }
-
 
 const renderShoeItems = (shoes) => {
   let shoeItems = '';

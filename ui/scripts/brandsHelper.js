@@ -15,7 +15,7 @@ const getBrandsList = (filters = {}) => {
     handleEditAndDeleteButtons('brand', 'brands', getBrandsList);
 
     setResultsCount(brands);
-  }, handleError);
+  });
 }
 
 const getBrandsDropdown = (search, afterLoading) => {

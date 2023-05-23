@@ -8,17 +8,26 @@ const headers = () => {
   })
 }
 
-async function get(url = "", data = {}) {
-  // Default options are marked with *
+
+async function get(url = "") {
   const request = {
-    method: "GET", // *GET, POST, PUT, DELETE, etc.
-    mode: "cors", // no-cors, *cors, same-origin
-    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: "same-origin", // include, *same-origin, omit
+    method: "GET", 
+    mode: "cors", 
+    cache: "no-cache",
+    credentials: "same-origin",
     headers: headers()
   };
-  const response = await fetch(API_URL + url, request);
-  return response; // parses JSON response into native JavaScript objects
+  
+  try {
+    const response = await fetch(API_URL + url, request);
+    if(response.status === 401){
+      window.location.href = "index.html";
+    }
+    return response;
+  } catch (error) {
+    console.log(error);
+    handleError(error);
+  }
 }
 
 
@@ -34,8 +43,17 @@ async function post(url = "", data = {}) {
     referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
     body: JSON.stringify(data), // body data type must match "Content-Type" header
   };
-  const response = await fetch(API_URL + url, request);
-  return response; // parses JSON response into native JavaScript objects
+ 
+  
+  try {
+    const response = await fetch(API_URL + url, request);
+    if(response.status === 401){
+      window.location.href = "index.html";
+    }
+    return response;
+  } catch (error) {
+    handleError(error);
+  }
 }
 
 async function put(url = "", data = {}) {
@@ -50,8 +68,17 @@ async function put(url = "", data = {}) {
     referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
     body: JSON.stringify(data), // body data type must match "Content-Type" header
   };
-  const response = await fetch(API_URL + url, request);
-  return response; // parses JSON response into native JavaScript objects
+  
+  
+  try {
+    const response = await fetch(API_URL + url, request);
+    if(response.status === 401){
+      window.location.href = "index.html";
+    }
+    return response;
+  } catch (error) {
+    handleError(error);
+  }
 }
 
 async function deleteConfirmed(url = "") {
@@ -63,12 +90,22 @@ async function deleteConfirmed(url = "") {
     credentials: "same-origin", // include, *same-origin, omit
     headers: headers()
   };
-  const response = await fetch(API_URL + url, request);
-  return response; // parses JSON response into native JavaScript objects
+  
+  
+  try {
+    const response = await fetch(API_URL + url, request);
+    if(response.status === 401){
+      window.location.href = "index.html";
+    }
+    return response;
+  } catch (error) {
+    handleError(error);
+  }
 }
 
 const handleError = (error) => {
-  console.error('ERROR', error)
+  console.error('ERROR', error);
+  window.alert("An error occured. Please try later");
 }
 
 
