@@ -1,6 +1,4 @@
-import { getShoeList } from "./shoesHelper.js";
-
-const getPaginator = (itemCount, currentPage) => {
+const getPaginator = (itemCount, currentPage, getData) => {
 
   const pageSize = Number(document.getElementById("pageSize").value);
   const left = itemCount % pageSize;
@@ -17,7 +15,7 @@ const getPaginator = (itemCount, currentPage) => {
   for(let i = 0; i < paginatorItems.length; i++){
     paginatorItems[i].addEventListener("click", () => {
       setCurrentPage(paginatorItems[i].getAttribute("data-page-number"));
-      getShoeList();
+      getData();
     })
   }
 
@@ -39,9 +37,9 @@ const setCurrentPage = (pageNumber) => {
   document.querySelector(`.paginatorItem[data-page-number="${pageNumber}"]`).setAttribute("id", "active");
 }
 
-const changePaginator = () => {
+const changePaginator = (getData) => {
   setCurrentPage(1);
-  getShoeList();
+  getData();
 }
 
 const setResultsCount = (data) => {

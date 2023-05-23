@@ -29,6 +29,13 @@
   <div class="d-f">
     <a href="category.html"><button id="create">Create category</button></a>
     <div><span id="resultsCount">0</span> items found</div>
+    <label>Items per page:
+      <select id="pageSize">
+        <option>5</option>
+        <option>10</option>
+        <option>50</option>
+      </select>
+    </label>
   </div>
 
   <div id="categoriesList">
@@ -39,6 +46,9 @@
     No categories found
   </div>
 
+  <div id="paginator">
+    
+  </div>
 
   <!--Js-->
   <script type="module" src="./categories.js"></script>

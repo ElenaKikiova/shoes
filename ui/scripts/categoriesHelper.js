@@ -1,19 +1,24 @@
 import { getUrlWithParams } from "./filtersHelper.js";
 import { get, handleError } from "./httpService.js";
 import { handleEditAndDeleteButtons } from "./listHelper.js";
-import { setResultsCount } from "./paginatorHelper.js";
+import { getCurrentPage, getPaginator, setResultsCount } from "./paginatorHelper.js";
 
 const getCategoriesList = (filters = {}) => {
 
   const urlWithParams = getUrlWithParams('/categories', filters);
   get(urlWithParams).then(async (response) => {
-    const categories = (await response.json()).data;
-    console.log(categories)
+    
+    const reponseJSON = await response.json();
+    const categories = reponseJSON.data;
+    const count = reponseJSON.count;
+
+    console.log(categories, count)
 
     renderCategoryItems(categories);
 
     handleEditAndDeleteButtons('category', 'categories', getCategoriesList);
-    setResultsCount(categories);
+    getPaginator(count, Number(getCurrentPage()), getCategoriesList);
+    setResultsCount(count);
 
   });
 }

@@ -2,8 +2,8 @@ const categoryService = require("../services/categoryService");
  
 exports.getAllCategories = async (req, res) => {
   try {
-    const categories = await categoryService.getAllCategories(req.query);
-    res.json({ data: categories, status: "success" });
+    const data = await categoryService.getAllCategories(req.query);
+    res.json({ ...data, status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

@@ -3,7 +3,17 @@ const { readSearchParams } = require("../searchHelper");
  
 exports.getAllCategories = async (query) => {
   const searchParams = readSearchParams(query);
-  return await CategoryModel.find(searchParams);
+  
+  const count = await CategoryModel.countDocuments(searchParams);
+
+  const data = await CategoryModel.find(searchParams)
+  .skip(query.pageSize * (query.pageNumber - 1))
+  .limit(query.pageSize);
+
+  return {
+    data,
+    count: count
+  }
 };
  
 exports.createCategory = async (category) => {

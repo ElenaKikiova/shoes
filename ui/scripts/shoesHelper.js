@@ -23,7 +23,7 @@ const getShoeList = (filters = {}) => {
       })
     }
 
-    getPaginator(count, Number(getCurrentPage()));
+    getPaginator(count, Number(getCurrentPage()), getShoeList);
     setResultsCount(count);
   });
 }
